@@ -1,0 +1,155 @@
+@import "tailwindcss";
+
+:root {
+  --background: #ffffff;
+  --foreground: #171717;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0a0a0a;
+    --foreground: #ededed;
+  }
+}
+
+@keyframes cart-bounce {
+  0% {
+    transform: scale(1);
+  }
+
+  30% {
+    transform: scale(1.3) translateY(-5px);
+  }
+
+  60% {
+    transform: scale(0.95);
+  }
+
+  100% {
+    transform: scale(1);
+  }
+}
+
+.cart-animate {
+  animation: cart-bounce 0.4s ease;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+.loader-container {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at center, #0f172a, #020617);
+  display: flex;
+  overflow: hidden;
+  justify-content: center;
+  align-items: center;
+}
+.loader-wrapper {
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none; 
+  backdrop-filter: blur(8px);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.loader-wrapper.show {
+  opacity: 1;
+  pointer-events: all;
+}
+
+.loader-wrapper.hide {
+  opacity: 0;
+  pointer-events: none;
+}
+canvas {
+  position: absolute;
+}
+
+.brand-text {
+  position: absolute;
+  bottom: 80px;
+  letter-spacing: 8px;
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+/* ✨ SVG logo */
+.sr-logo {
+  width: 180px;
+  height: auto;
+}
+
+/* 🔥 Gold animated stroke */
+.stroke-path {
+  stroke: url(#goldGradient);
+  stroke-width: 4;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+
+  stroke-dasharray: 400;
+  stroke-dashoffset: 400;
+
+  animation: draw 2s ease forwards, glow 2s infinite alternate 2s;
+}
+
+/* 🧨 Gradient (gold luxury) */
+.sr-logo {
+  filter: drop-shadow(0 0 10px rgba(212, 175, 55, 0.6));
+}
+
+.sr-logo defs {
+  display: none;
+}
+
+/* Hack: inject gradient */
+.sr-logo::before {
+  content: "";
+}
+
+/* ✨ Brand text */
+.brand-text {
+  margin-top: 20px;
+  letter-spacing: 6px;
+  font-size: 1rem;
+  color: #94a3b8;
+}
+
+/* 🔥 Animations */
+@keyframes draw {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes glow {
+  from {
+    filter: drop-shadow(0 0 10px #d4af37);
+  }
+
+  to {
+    filter: drop-shadow(0 0 25px #ffd700);
+  }
+}
+@keyframes fadeIn {
+  from { opacity: 0 }
+  to { opacity: 1 }
+}
+
+.animate-fadeIn {
+  animation: fadeIn 0.4s ease-in;
+}
