@@ -4,7 +4,7 @@ export default async function ProductPage({ params }) {
   const { id } = await params;
 
   const res = await fetch(
-    `http://localhost:3000/api/products?collectionId=${id}`,
+    `${process.env.NEXTAUTH_URL}/api/products?collectionId=${id}`,
     { cache: "no-store" }
   );
 
