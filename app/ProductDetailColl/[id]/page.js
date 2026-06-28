@@ -36,9 +36,9 @@ export default async function ProductPage({ params }) {
       <main className="flex-1">
         <div className="max-w-7xl mx-auto p-4 sm:p-6 lg:p-8">
 
-          <div className="mb-4">
+          {/* <div className="mb-4">
             <MobileFilterDrawer />
-          </div>
+          </div> */}
 
           <div className="flex flex-col lg:flex-row gap-8">
 
