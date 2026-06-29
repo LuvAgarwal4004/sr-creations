@@ -114,7 +114,7 @@ export default function AdminOrdersPage() {
         <div className="
   grid
   grid-cols-1
-  md:grid-cols-4
+  md:grid-cols-[2fr_1fr_1fr_auto]
   gap-4
   mb-6
 ">
@@ -177,14 +177,14 @@ focus:ring-black
           </div>
           <button
             className="
-    bg-black
-    text-white
-    text-xs
-    rounded-2xl
-    px-5
-    py-3
-    hover:bg-gray-800
-    transition
+     h-[50px]
+      px-6
+      bg-black
+      text-white
+      rounded-2xl
+      hover:bg-gray-800
+      transition
+      whitespace-nowrap
   "
             onClick={() => {
               setSearch("");
