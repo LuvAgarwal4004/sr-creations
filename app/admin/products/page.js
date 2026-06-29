@@ -20,165 +20,155 @@ export default function ProductsPage() {
             };
 
             fetchProducts();
-        }, 300);
+        }, 200);
 
         return () => clearTimeout(timeout);
     }, [search]);
+    // const editProduct = async (id) => {
+    //     await fetch(`/api/admin/products/${id}`, {
+    //         method: "PUT",
+    //         headers: {
+    //             "Content-Type": "application/json",
+    //         },
+    //         body: JSON.stringify(data),
+    //     });
+    // };
 
     const deleteProduct = async (id) => {
+        console.log("Deleting:", id);
+
         const res = await fetch(`/api/admin/products/${id}`, {
             method: "DELETE",
         });
 
         const data = await res.json();
+        console.log("Response:", data);
 
         if (data.success) {
-            setProducts((prev) =>
-                prev.filter((p) => String(p._id) !== String(id))
-            );
-            toast.success("Product deleted");
+            setProducts(prev => prev.filter(p => String(p._id) !== String(id)));
         } else {
             toast.error("Delete failed");
         }
     };
 
     return (
-        <div className="min-h-screen bg-gray-50 p-4 sm:p-6 md:p-8">
-
-            {/* Header */}
-            <div className="max-w-7xl mx-auto mb-8">
-                <h1 className="text-3xl md:text-4xl font-bold text-gray-900">
-                    Products
-                </h1>
-
-                <p className="text-gray-500 mt-2">
-                    Manage all your products
-                </p>
-            </div>
-
-            {/* Search */}
-            <div className="max-w-7xl mx-auto mb-8">
-                <input
-                    type="text"
-                    value={search}
-                    onChange={(e) => setSearch(e.target.value)}
-                    placeholder="Search products..."
-                    className="
-            w-full
-            rounded-2xl
-            border
-            border-gray-300
-            bg-white
-            px-5
-            py-4
-            text-black
-            shadow-sm
-            focus:outline-none
-            focus:ring-2
-            focus:ring-yellow-500
-          "
-                />
-            </div>
-
-            {/* Products Grid */}
-            <div
+        <div className="
+p-4
+sm:p-6
+md:p-8
+lg:p-10
+">
+            <h1 className="
+text-2xl
+sm:text-3xl
+font-bold
+text-black
+mb-6
+">All Products</h1>
+            <input
+                type="text"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                placeholder="Search products..."
                 className="
-          max-w-7xl
-          mx-auto
-          grid
-          grid-cols-1
-          sm:grid-cols-2
-          lg:grid-cols-3
-          xl:grid-cols-4
-          gap-6
-        "
-            >
-                {products.map((product) => (
-                    <div
-                        key={product._id}
-                        className="
-              bg-white
-              rounded-3xl
-              overflow-hidden
-              shadow-md
-              border
-              hover:shadow-xl
-              transition-all
-              duration-300
-            "
-                    >
+mb-6
+sm:mb-8
+w-full
+px-4
+py-3
+rounded-xl
+border
+border-gray-300
+bg-white
+text-black
+placeholder-gray-500
+focus:outline-none
+focus:ring-2
+focus:ring-yellow-500
+"
+            />
+
+            <div className="
+grid
+grid-cols-2
+sm:grid-cols-2
+md:grid-cols-3
+lg:grid-cols-4
+gap-3
+sm:gap-4
+md:gap-6
+">
+                {products.map(product => (
+                    <div key={product._id} className="
+bg-[#111]
+p-3
+sm:p-4
+rounded-xl
+shadow-lg
+hover:scale-[1.02]
+transition
+">
+
                         {product.image && (
                             <img
                                 src={product.image}
-                                alt={product.title}
-                                className="
-                  w-full
-                  h-56
-                  object-cover
-                "
+                                className="w-full h-40 object-cover rounded"
                             />
                         )}
 
-                        <div className="p-5">
+                        <h2 className="
+mt-2
+text-sm
+sm:text-base
+md:text-lg
+font-medium
+line-clamp-2
+">{product.title}</h2>
+                        <p className="
+text-green-400
+font-semibold
+text-sm
+sm:text-base
+">₹{product.price}</p>
 
-                            <h2 className="text-lg font-semibold text-gray-900 line-clamp-2">
-                                {product.title}
-                            </h2>
+                        <div className="
+flex
+flex-col
+sm:flex-row
+gap-2
+mt-3
+">
+                            <button
+                                onClick={() => deleteProduct(product._id)}
+                                className="
+w-full
+bg-red-500
+py-2
+rounded
+text-sm
+hover:bg-red-600
+"
+                            >
+                                Delete
+                            </button>
 
-                            <p className="text-green-600 font-bold text-xl mt-2">
-                                ₹{product.price}
-                            </p>
-
-                            <div className="flex gap-3 mt-5">
-
-                                <button
-                                    onClick={() => deleteProduct(product._id)}
-                                    className="
-                    flex-1
-                    bg-red-500
-                    hover:bg-red-600
-                    text-white
-                    py-2.5
-                    rounded-xl
-                    font-medium
-                    transition
-                  "
-                                >
-                                    Delete
+                            <SmartLink href={`/admin/products/${product._id}`}>
+                                <button className="
+w-full
+bg-yellow-500
+py-2
+rounded
+text-sm
+hover:bg-yellow-600
+">
+                                    Edit
                                 </button>
-
-                                <SmartLink
-                                    href={`/admin/products/${product._id}`}
-                                    className="flex-1"
-                                >
-                                    <button
-                                        className="
-                      w-full
-                      bg-yellow-500
-                      hover:bg-yellow-600
-                      text-black
-                      py-2.5
-                      rounded-xl
-                      font-medium
-                      transition
-                    "
-                                    >
-                                        Edit
-                                    </button>
-                                </SmartLink>
-
-                            </div>
+                            </SmartLink>
                         </div>
+
                     </div>
                 ))}
             </div>
-
-            {/* Empty state */}
-            {products.length === 0 && (
-                <div className="text-center py-20 text-gray-500">
-                    No products found.
-                </div>
-            )}
         </div>
     );
 }
