@@ -196,7 +196,7 @@ focus:ring-black
           </button> */}
           <div className="flex flex-col">
             <label className="text-xs uppercase tracking-wide text-transparent mb-1">
-              Clear
+              
             </label>
 
             <button
@@ -212,6 +212,7 @@ focus:ring-black
       px-6
       py-3
       bg-black
+      text-white
       hover:bg-gray-100
       transition
     "
