@@ -255,7 +255,7 @@ const Page = () => {
                       className="
     w-full
     h-56
-    object-cover
+    object-contain
     rounded-lg
 
     sm:w-28
@@ -289,7 +289,7 @@ const Page = () => {
 
                         <button
                           onClick={() => decreaseQty(String(item._id))}
-                          className="px-3 py-1 bg-gray-200"
+                          className="px-3 py-1 bg-gray-400"
                         >
                           −
                         </button>
@@ -300,7 +300,7 @@ const Page = () => {
 
                         <button
                           onClick={() => increaseQty(String(item._id))}
-                          className="px-3 py-1 bg-gray-200"
+                          className="px-3 py-1 bg-gray-400"
                         >
                           +
                         </button>
