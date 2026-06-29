@@ -175,7 +175,7 @@ focus:ring-black
     "
             />
           </div>
-          <button
+          {/* <button
             className="
      h-[50px]
       px-6
@@ -193,8 +193,32 @@ focus:ring-black
             }}
           >
             Clear
-          </button>
+          </button> */}
+          <div className="flex flex-col">
+            <label className="text-xs uppercase tracking-wide text-transparent mb-1">
+              Clear
+            </label>
 
+            <button
+              onClick={() => {
+                setSearch("");
+                setFromDate("");
+                setToDate("");
+              }}
+              className="
+      border
+      border-gray-300
+      rounded-2xl
+      px-6
+      py-3
+      bg-white
+      hover:bg-gray-100
+      transition
+    "
+            >
+              Clear
+            </button>
+          </div>
         </div>
         <div
           className="
