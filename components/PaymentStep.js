@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import { setGlobalLoading } from "./RouteLoader";
 import { useSession } from "next-auth/react";
 import { useCheckout } from "@/context/CheckoutContext";
+import toast from "react-hot-toast";
 
 export default function PaymentStep() {
   const { cart, setCart } = useCart();
@@ -22,13 +23,13 @@ export default function PaymentStep() {
       setGlobalLoading(true);
     }
     if (!session?.user?.email) {
-      alert("Please login");
+      toast.error("Please login");
       return;
     }
     const raw = localStorage.getItem(`address-${session.user.email}`);
 
     if (!raw) {
-      alert("Address missing");
+      toast.error("Address missing");
       return;
     }
 
@@ -48,14 +49,14 @@ export default function PaymentStep() {
 
       const data = await res.json();
       if (!res.ok) {
-        alert(data.error || "Payment failed. Cant order more than once at a time!");
+        toast.error(data.error || "Payment failed. Cant order more than once at a time!");
         setLoading(false);
         return;
       }
 
 
 
-      alert("Order Placed!");
+      toast.success("Order Placed!");
       setCart([]);
 
       await fetch(
@@ -80,7 +81,7 @@ export default function PaymentStep() {
 
 
     } catch (err) {
-      alert("Something went wrong");
+      toast.error("Something went wrong");
     }
     setLoading(false);
   };

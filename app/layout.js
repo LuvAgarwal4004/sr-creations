@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import SessionWrapper from "@/components/SessionWrapper";
 import { CartProvider } from "@/context/CartContext";
 import RouteLoader from "@/components/RouteLoader";
+import { Toaster } from "react-hot-toast";
 // import { CheckoutProvider } from "@/context/CheckoutContext";
 
 
@@ -24,8 +25,8 @@ export const metadata = {
 };
 
 export default function RootLayout({ children }) {
-  
-   
+
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
@@ -34,19 +35,47 @@ export default function RootLayout({ children }) {
           <CartProvider>
             <RouteLoader>
               {/* <CheckoutProvider> */}
-                
 
-        <Navbar/>
-        <div className="min-h-screen">
-      
-        {children}
-            
-        </div>
-        <Footer/>
+
+              <Navbar />
+              <div className="min-h-screen">
+
+                {children}
+
+              </div>
+              <Footer />
               {/* </CheckoutProvider> */}
             </RouteLoader>
           </CartProvider>
         </SessionWrapper>
+        <Toaster
+          position="top-center"
+          gutter={8}
+          toastOptions={{
+            duration: 3000,
+            style: {
+              background: "#18181b",
+              color: "#fff",
+              borderRadius: "16px",
+              padding: "16px",
+              fontSize: "15px",
+            },
+
+            success: {
+              iconTheme: {
+                primary: "#22c55e",
+                secondary: "#fff",
+              },
+            },
+
+            error: {
+              iconTheme: {
+                primary: "#ef4444",
+                secondary: "#fff",
+              },
+            },
+          }}
+        />
       </body>
     </html>
   );

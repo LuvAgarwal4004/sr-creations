@@ -1,5 +1,5 @@
 "use client";
-
+import toast from "react-hot-toast";
 import {
   useState
 } from "react";
@@ -60,13 +60,13 @@ export default function Page() {
 
         setOtpSent(true);
 
-        alert(
+        toast.success(
           "OTP sent"
         );
 
       } else {
 
-        alert(
+        toast.error(
           data.error
         );
 
@@ -109,7 +109,7 @@ export default function Page() {
 
       if (data.success) {
 
-        alert(
+        toast.success(
           "Password reset successful"
         );
 
@@ -119,7 +119,7 @@ export default function Page() {
 
       } else {
 
-        alert(
+        toast.error(
           data.error
         );
 

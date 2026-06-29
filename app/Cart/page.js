@@ -4,6 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { setGlobalLoading } from "@/components/RouteLoader";
 import Loading from "../loading";
+import toast from "react-hot-toast";
 import { useCheckout } from "@/context/CheckoutContext";
 
 const Page = () => {
@@ -84,7 +85,7 @@ const Page = () => {
 
       setGlobalLoading(false);
 
-      alert(
+      toast.error(
         data.error ||
         "Unable to start checkout"
       );
@@ -238,49 +239,114 @@ const Page = () => {
                   : item.price;
 
               return (
-                <div key={item._id} className="rounded-lg border p-4 shadow-sm dark:bg-gray-800">
-                  <div className="flex justify-between items-center">
+                <div
+                  key={item._id}
+                  className="
+    bg-white
+    rounded-3xl
+    border
+    shadow-sm
+    p-4
+    sm:p-5
+  "
+                >
+                  <div className="
+    flex
+    flex-col
+    sm:flex-row
+    gap-5
+  ">
 
-                    <img src={item.image} className="h-20 w-20" />
+                    <img
+                      src={item.image}
+                      className="
+        w-full
+        sm:w-32
+        h-56
+        sm:h-32
+        object-cover
+        rounded-2xl
+      "
+                    />
 
-                    <div className="flex flex-col gap-2">
-                      <p className="font-semibold hover:font-extrabold hover:font-amber dark:text-white">{item.title}</p>
-                    </div>
+                    <div className="flex-1">
 
-                    <div className="flex flex-col gap-2">
-                      <p className="font-bold dark:text-white">
+                      <h3 className="
+        text-lg
+        font-semibold
+        text-gray-900
+      ">
+                        {item.title}
+                      </h3>
+
+                      <p className="
+        text-xl
+        font-bold
+        mt-2
+      ">
                         ₹{itemPrice * item.qty}
                       </p>
-                      <div className="flex items-center border rounded-lg overflow-hidden">
+
+                      <div className="
+        flex
+        items-center
+        gap-3
+        mt-4
+      ">
+
+                        <div className="
+          flex
+          items-center
+          border
+          rounded-xl
+          overflow-hidden
+        ">
+                          <button
+                            onClick={() =>
+                              decreaseQty(String(item._id))
+                            }
+                            className="
+              px-4
+              py-2
+              bg-gray-100
+            "
+                          >
+                            −
+                          </button>
+
+                          <span className="px-5">
+                            {item.qty}
+                          </span>
+
+                          <button
+                            onClick={() =>
+                              increaseQty(String(item._id))
+                            }
+                            className="
+              px-4
+              py-2
+              bg-gray-100
+            "
+                          >
+                            +
+                          </button>
+                        </div>
 
                         <button
-                          onClick={() => decreaseQty(String(item._id))}
-                          className="px-3 py-1 bg-gray-200"
+                          onClick={() =>
+                            removeFromCart(String(item._id))
+                          }
+                          className="
+            text-red-500
+            font-medium
+          "
                         >
-                          −
-                        </button>
-
-                        <span className="px-4">
-                          {item.qty}
-                        </span>
-
-                        <button
-                          onClick={() => increaseQty(String(item._id))}
-                          className="px-3 py-1 bg-gray-200"
-                        >
-                          +
+                          Remove
                         </button>
 
                       </div>
+
                     </div>
-
-                    <button
-                      onClick={() => removeFromCart(String(item._id))}
-                      className="text-red-500"
-                    >
-                      Remove
-                    </button>
-
                   </div>
                 </div>
               )

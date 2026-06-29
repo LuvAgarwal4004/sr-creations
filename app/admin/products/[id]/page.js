@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import ProductForm from "@/components/ProductForm";
 import Loading from "@/app/loading";
+import toast from "react-hot-toast";
 
 export default function EditProduct() {
   const { id } = useParams();
@@ -21,7 +22,19 @@ export default function EditProduct() {
     fetchProduct();
   }, [id]);
 
-  if (!form) return <p><Loading /></p>;
+  if (!form) {
+    return (
+      <div className="
+      min-h-screen
+      flex
+      items-center
+      justify-center
+      bg-gray-50
+    ">
+        <Loading />
+      </div>
+    );
+  }
 
   const handleUpdate = async (updatedData) => {
     console.log("BEFORE FETCH");
@@ -36,20 +49,59 @@ export default function EditProduct() {
     const data = await res.json();
     console.log("BEFORE ALERT");
     if (data.success) {
-      alert("Updated 🔥");
+      toast.success("Updated 🔥");
       router.push("/admin/products");
     }
     console.log("AFTER ALERT");
   };
 
   return (
-    <div className="p-10 text-white max-w-2xl mx-auto">
-      <h1 className="text-3xl mb-6 font-bold">Edit Product</h1>
+    <div className="
+    min-h-screen
+    bg-gray-50
+    px-4
+    py-6
+    sm:px-6
+    lg:px-8
+  ">
+      <div className="
+      max-w-4xl
+      mx-auto
+    ">
+        {/* Header */}
+        <div className="mb-8">
+          <h1 className="
+          text-3xl
+          sm:text-4xl
+          font-bold
+          text-gray-900
+        ">
+            Edit Product
+          </h1>
 
-      <ProductForm
-        initialData={form}
-        onSubmit={handleUpdate}
-      />
+          <p className="
+          text-gray-500
+          mt-2
+        ">
+            Update product details, pricing and images.
+          </p>
+        </div>
+
+        {/* Form Card */}
+        <div className="
+        bg-white
+        rounded-3xl
+        shadow-sm
+        border
+        p-5
+        sm:p-8
+      ">
+          <ProductForm
+            initialData={form}
+            onSubmit={handleUpdate}
+          />
+        </div>
+      </div>
     </div>
   );
 }

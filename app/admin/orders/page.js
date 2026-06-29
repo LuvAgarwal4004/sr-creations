@@ -94,12 +94,13 @@ export default function AdminOrdersPage() {
 
       <div className="max-w-7xl mx-auto">
 
-        <div className="mb-10">
+        <div className="mb-8">
           <h1 className="
-            text-4xl
-            font-bold
-            text-gray-900
-          ">
+    text-3xl
+    md:text-4xl
+    font-bold
+    text-gray-900
+  ">
             Orders Dashboard
           </h1>
 
@@ -111,8 +112,9 @@ export default function AdminOrdersPage() {
           </p>
         </div>
         <div className="
-  flex
-  flex-wrap
+  grid
+  grid-cols-1
+  md:grid-cols-4
   gap-4
   mb-6
 ">
@@ -126,14 +128,15 @@ export default function AdminOrdersPage() {
               setSearch(e.target.value)
             }
             className="
-      flex-1
-      min-w-[250px]
-      border
-      rounded-2xl
-      px-5
-      py-3
-      outline-none
-    "
+w-full
+border
+rounded-2xl
+px-5
+py-3
+outline-none
+focus:ring-2
+focus:ring-black
+"
           />
 
           {/* FROM */}
@@ -173,6 +176,15 @@ export default function AdminOrdersPage() {
             />
           </div>
           <button
+            className="
+    bg-black
+    text-white
+    rounded-2xl
+    px-5
+    py-3
+    hover:bg-gray-800
+    transition
+  "
             onClick={() => {
               setSearch("");
               setFromDate("");
@@ -197,7 +209,11 @@ shadow-lg
             Revenue
           </h2>
 
-          <p className="text-4xl font-bold">
+          <p className="
+text-3xl
+md:text-4xl
+font-bold
+">
             ₹{totalSales.toFixed(2)}
           </p>
 
@@ -262,11 +278,14 @@ shadow-lg
                 </div>
 
                 <div className="
-                  flex
-                  items-center
-                  gap-4
-                  flex-wrap
-                ">
+flex
+flex-col
+sm:flex-row
+sm:flex-wrap
+items-start
+sm:items-center
+gap-3
+">
 
                   <div className={`
                     px-4
@@ -308,12 +327,13 @@ shadow-lg
                       )
                     }
                     className={`
-  border
-  rounded-xl
-  px-4
-  py-2
-  bg-white
-
+  w-full
+sm:w-auto
+border
+rounded-xl
+px-4
+py-2
+bg-white
   ${[
                         "delivered",
                         "cancelled",
@@ -367,6 +387,8 @@ shadow-lg
                 rounded-2xl
                 p-5
                 mb-6
+                text-sm
+sm:text-base
               ">
 
                 <h3 className="
@@ -415,25 +437,28 @@ shadow-lg
                 {order.items.map((item, index) => (
 
                   <div
-                    key={index}
                     className="
-                      flex
-                      items-center
-                      gap-4
-                      border
-                      rounded-2xl
-                      p-4
-                    "
+    flex
+    flex-col
+    sm:flex-row
+    sm:items-center
+    gap-4
+    border
+    rounded-2xl
+    p-4
+  "
                   >
 
                     <img
                       src={item.image}
                       className="
-                        w-24
-                        h-24
-                        object-cover
-                        rounded-xl
-                      "
+w-full
+sm:w-24
+h-52
+sm:h-24
+object-cover
+rounded-xl
+"
                     />
 
                     <div className="flex-1">
@@ -455,10 +480,13 @@ shadow-lg
                     </div>
 
                     <div className="
-                      text-right
-                      font-bold
-                      text-lg
-                    ">
+w-full
+sm:w-auto
+text-left
+sm:text-right
+font-bold
+text-lg
+">
                       {
                         item.discountPercent > 0 && (
                           <p className="
@@ -511,7 +539,7 @@ shadow-lg
   "
               >
 
-                <a
+                {/* <a
                   href={`/api/admin/order/${order._id}/invoice`}
                   target="_blank"
                   className="
@@ -526,18 +554,20 @@ shadow-lg
     "
                 >
                   Download Invoice
-                </a>
+                </a> */}
 
                 <div
                   className="
-      bg-black
-      text-white
-      px-6
-      py-4
-      rounded-2xl
-      text-xl
-      font-bold
-    "
+  w-full
+  sm:w-auto
+  bg-black
+  text-white
+  p-5
+  rounded-2xl
+  text-base
+  sm:text-lg
+  font-bold
+"
                 >
                   <div>
                     <p>
@@ -587,6 +617,23 @@ shadow-lg
             </div>
 
           ))}
+          {orders.length === 0 && (
+            <div className="
+    bg-white
+    rounded-3xl
+    p-10
+    text-center
+    shadow
+  ">
+              <h2 className="text-2xl font-bold">
+                No orders found
+              </h2>
+
+              <p className="text-gray-500 mt-2">
+                Try changing your filters.
+              </p>
+            </div>
+          )}
 
         </div>
 

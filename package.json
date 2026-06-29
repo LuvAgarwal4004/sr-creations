@@ -26,6 +26,7 @@
     "pdfkit": "^0.18.0",
     "react": "19.2.3",
     "react-dom": "19.2.3",
+    "react-hot-toast": "^2.6.0",
     "react-router-dom": "^7.13.2",
     "resend": "^6.12.3"
   },

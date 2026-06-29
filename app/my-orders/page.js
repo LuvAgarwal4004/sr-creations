@@ -346,12 +346,12 @@ export default function MyOrdersPage() {
                   </div>
 
                 </div>
-                <a
+                {/* <a
                   href={`/api/order/${order._id}/invoice`}
                   target="_blank"
                 >
                   Download Invoice
-                </a>
+                </a> */}
               </div>
 
             ))}

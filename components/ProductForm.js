@@ -1,5 +1,6 @@
 "use client";
 import { useState, useEffect } from "react";
+import toast from "react-hot-toast";
 // import { useRef } from "react";
 
 export default function ProductForm({ initialData = {}, onSubmit }) {
@@ -88,7 +89,7 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
   //   setShowDiscountPopup] =
   //   useState(false);
   if (Number(discountPercent) < 0) {
-    alert("Discount cannot be negative");
+    toast.error("Discount cannot be negative");
     return;
   }
   const handleChange = (e) => {
@@ -125,7 +126,7 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
     );
     if (!res.ok) {
       setUploading(false);
-      alert("Upload failed");
+      toast.error("Upload failed");
       return;
     }
 
@@ -143,7 +144,7 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
     e.preventDefault();
     console.log("SUBMIT FIRED");
     if (!form.title || !form.price || !form.category || !form.image) {
-      alert("All fields are required");
+      toast.error("All fields are required");
       return;
     }
 
@@ -175,7 +176,7 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
 
       if (!hasPrice && !hasPercent) {
 
-        alert(
+        toast.error(
           "Please fill either Discounted Price or Discount %"
         );
 
@@ -187,7 +188,7 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
       Number(discountedPrice) >=
       Number(form.price)
     ) {
-      alert(
+      toast.error(
         "Discounted price must be lower than original price"
       );
       return;
@@ -195,7 +196,7 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
     if (
       Number(discountPercent) >= 100
     ) {
-      alert(
+      toast.error(
         "Discount percentage must be less than 100"
       );
       return;

@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 // import { useParams } from "next/navigation";
 import SmartLink from "@/components/SmartLink";
+import toast from "react-hot-toast";
 
 export default function TrackOrderPage() {
 
@@ -178,7 +179,7 @@ export default function TrackOrderPage() {
 
     } else {
 
-      alert(data.error);
+      toast.error(data.error);
 
     }
 

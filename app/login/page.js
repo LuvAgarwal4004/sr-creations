@@ -5,6 +5,7 @@ import { useState } from "react";
 import { signIn } from "next-auth/react";
 import { useRouter }
   from "next/navigation";
+import toast from 'react-hot-toast';
 
 const page = () => {
   const router = useRouter();
@@ -29,7 +30,7 @@ const page = () => {
 
     if (res.error) {
 
-      alert(res.error);
+      toast.error(res.error);
 
     } else {
 

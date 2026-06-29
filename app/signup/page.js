@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import React from 'react';
 import { signIn } from "next-auth/react";
+import toast from "react-hot-toast";
 
 const page = () => {
   const router = useRouter();
@@ -36,7 +37,7 @@ const page = () => {
       password !== confirmPassword
     ) {
 
-      alert(
+      toast.error(
         "Passwords do not match"
       );
 
@@ -67,13 +68,13 @@ const page = () => {
     if (data.success) {
 
       setOtpSent(true);
-      alert(
+      toast.success(
         "OTP sent to email"
       );
 
     } else {
 
-      alert(data.error);
+      toast.error(data.error);
 
     }
 
@@ -123,11 +124,11 @@ const page = () => {
 
         setTimer(30);
 
-        alert("OTP resent");
+        toast.success("OTP resent");
 
       } else {
 
-        alert(data.error);
+        toast.error(data.error);
 
       }
 
@@ -172,7 +173,7 @@ const page = () => {
 
       } else {
 
-        alert(data.error);
+        toast.error(data.error);
 
       }
 
