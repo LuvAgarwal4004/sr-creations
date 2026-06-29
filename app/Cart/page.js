@@ -239,114 +239,89 @@ const Page = () => {
                   : item.price;
 
               return (
-                <div
-                  key={item._id}
-                  className="
-    bg-white
-    rounded-3xl
-    border
-    shadow-sm
-    p-4
-    sm:p-5
-  "
-                >
-                  <div className="
+                <div key={item._id} className="rounded-lg border p-4 shadow-sm dark:bg-gray-800">
+                  <div
+                    className="
     flex
     flex-col
     sm:flex-row
-    gap-5
-  ">
+    sm:items-center
+    gap-4
+  "
+                  >
 
                     <img
                       src={item.image}
                       className="
-        w-full
-        sm:w-32
-        h-56
-        sm:h-32
-        object-cover
-        rounded-2xl
-      "
+    w-full
+    h-56
+    object-cover
+    rounded-lg
+
+    sm:w-28
+    sm:h-28
+
+    lg:w-24
+    lg:h-24
+    lg:flex-shrink-0
+  "
                     />
 
                     <div className="flex-1">
+                      <p className="font-semibold hover:font-extrabold hover:font-amber dark:text-white">{item.title}</p>
+                    </div>
 
-                      <h3 className="
-        text-lg
-        font-semibold
-        text-gray-900
-      ">
-                        {item.title}
-                      </h3>
+                    <div
+                      className="
+    flex
+    flex-col
+    gap-3
 
-                      <p className="
-        text-xl
-        font-bold
-        mt-2
-      ">
+    sm:items-start
+
+    lg:items-end
+  "
+                    >
+                      <p className="font-bold dark:text-white">
                         ₹{itemPrice * item.qty}
                       </p>
-
-                      <div className="
-        flex
-        items-center
-        gap-3
-        mt-4
-      ">
-
-                        <div className="
-          flex
-          items-center
-          border
-          rounded-xl
-          overflow-hidden
-        ">
-                          <button
-                            onClick={() =>
-                              decreaseQty(String(item._id))
-                            }
-                            className="
-              px-4
-              py-2
-              bg-gray-100
-            "
-                          >
-                            −
-                          </button>
-
-                          <span className="px-5">
-                            {item.qty}
-                          </span>
-
-                          <button
-                            onClick={() =>
-                              increaseQty(String(item._id))
-                            }
-                            className="
-              px-4
-              py-2
-              bg-gray-100
-            "
-                          >
-                            +
-                          </button>
-                        </div>
+                      <div className="flex items-center border rounded-lg overflow-hidden">
 
                         <button
-                          onClick={() =>
-                            removeFromCart(String(item._id))
-                          }
-                          className="
-            text-red-500
-            font-medium
-          "
+                          onClick={() => decreaseQty(String(item._id))}
+                          className="px-3 py-1 bg-gray-200"
                         >
-                          Remove
+                          −
+                        </button>
+
+                        <span className="px-4">
+                          {item.qty}
+                        </span>
+
+                        <button
+                          onClick={() => increaseQty(String(item._id))}
+                          className="px-3 py-1 bg-gray-200"
+                        >
+                          +
                         </button>
 
                       </div>
-
                     </div>
+
+                    <button
+                      onClick={() => removeFromCart(String(item._id))}
+                      className="
+    text-red-500
+    font-medium
+
+    sm:self-start
+
+    lg:self-center
+  "
+                    >
+                      Remove
+                    </button>
+
                   </div>
                 </div>
               )
