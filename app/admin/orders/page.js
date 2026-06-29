@@ -211,7 +211,7 @@ focus:ring-black
       rounded-2xl
       px-6
       py-3
-      bg-white
+      bg-black
       hover:bg-gray-100
       transition
     "
