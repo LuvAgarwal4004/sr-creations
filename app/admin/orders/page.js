@@ -179,6 +179,7 @@ focus:ring-black
             className="
     bg-black
     text-white
+    text-xs
     rounded-2xl
     px-5
     py-3
