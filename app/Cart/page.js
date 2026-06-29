@@ -285,7 +285,7 @@ const Page = () => {
                       <p className="font-bold dark:text-white">
                         ₹{itemPrice * item.qty}
                       </p>
-                      <div className="flex items-center border rounded-lg overflow-hidden">
+                      <div className="flex items-center rounded-lg overflow-hidden">
 
                         <button
                           onClick={() => decreaseQty(String(item._id))}
