@@ -108,7 +108,10 @@ export default function Home() {
   return (
     <>
       <div
-        className="relative w-full h-56 md:h-96 overflow-hidden rounded-lg bg-[#4169e1] shadow shadow-2xl shadow-blue-500"
+        className="relative w-full h-[220px]
+sm:h-[320px]
+md:h-[420px]
+lg:h-[520px] overflow-hidden rounded-lg bg-[#4169e1] shadow shadow-2xl shadow-blue-500"
         onTouchStart={onTouchStart}
         onTouchEnd={onTouchEnd}
       >
@@ -126,7 +129,7 @@ export default function Home() {
               priority={i === 0}
               quality={75}
               sizes="(max-width: 768px) 100vw, 1200px"
-              className="object-contain"
+              className="object-cover"
             />
           </div>
         ))}
@@ -158,8 +161,10 @@ export default function Home() {
         </div>
       </div>
       <div className=" flex flex-col items-center justify-center"  >
-        <div className="text-5xl font-bold mt-7 m-3">Categories We Offer</div>
-        <div className="text-xl mb-4">Browse items by category</div>
+        <div className="text-3xl
+md:text-5xl font-bold mt-7 m-3">Categories We Offer</div>
+        <div className="text-base
+md:text-xl mb-4">Browse items by category</div>
       </div>
       <div className=" relative w-full max-w-6xl mx-auto">
         {/* Carousel */}
@@ -167,7 +172,10 @@ export default function Home() {
           <div className="flex flex-nowrap">
             {collection.length > 0 && collection.map((card) => (
               <SmartLink key={card.id || card.title} href={`/collections/${card.id}`}
-                className="basis-1/3 md:basis-1/4 flex-none p-3">
+                className="basis-[80%]
+sm:basis-[48%]
+md:basis-1/3
+lg:basis-1/4 flex-none p-3">
                 <div
 
 
@@ -188,8 +196,10 @@ export default function Home() {
                     </div>
 
                     {/* Text */}
-                    <div className="p-4">
-                      <h3 className="text-lg font-semibold">{card.title}</h3>
+                    <div className="p-3
+md:p-4">
+                      <h3 className="text-sm
+sm:text-lg font-semibold">{card.title}</h3>
                       <p className="text-sm text-gray-500 mt-2">
                         This is a short description for {card.title}.
                       </p>
@@ -217,17 +227,20 @@ export default function Home() {
         </div>
       </div>
       <div className=" flex flex-col items-center justify-center"  >
-        <div className="text-5xl font-bold mt-7 m-3">New Arrivals</div>
-        <div className="text-xl mb-4">Look at the latest collection that we offer</div>
+        <div className="text-3xl
+md:text-5xl font-bold mt-7 m-3">New Arrivals</div>
+        <div className="text-base
+md:text-xl mb-4">Look at the latest collection that we offer</div>
       </div>
       <div className="w-full max-w-6xl mx-auto px-4">
         <div className="
-       grid 
-       grid-cols-1
-       sm:grid-cols-2
+       grid
+       grid-cols-2
        md:grid-cols-3
        lg:grid-cols-4
-       gap-6
+       gap-3
+sm:gap-5
+lg:gap-6
         ">
           {trends.length > 0 && trends.map((trend) => (
 
@@ -236,7 +249,10 @@ export default function Home() {
                 key={trend._id}
                 className="bg-white rounded-xl shadow-md overflow-hidden hover:shadow-lg hover:shadow-[#00bfff] transition-shadow duration-300"
               >
-                <div className="relative w-full h-80">
+                <div className="relative w-full h-44
+sm:h-60
+md:h-72
+lg:h-80">
                   {trend.isDiscount && (
                     <div
                       className="
@@ -262,8 +278,10 @@ export default function Home() {
                   <Image src={trend.image} alt="" fill className="object-cover" />
                 </div>
 
-                <div className="p-4">
-                  <h3 className="text-lg font-semibold">{trend.title}</h3>
+                <div className="p-3
+md:p-4">
+                  <h3 className="text-sm
+sm:text-lg font-semibold">{trend.title}</h3>
                   <div className="mt-2">
 
                     {trend.isDiscount ? (
@@ -272,7 +290,8 @@ export default function Home() {
                           ₹{trend.price}
                         </p>
 
-                        <p className="text-green-600 font-bold text-xl">
+                        <p className="text-green-600 font-bold text-base
+md:text-xl">
                           ₹{trend.discountedPrice}
                         </p>
                       </>
@@ -284,7 +303,7 @@ export default function Home() {
 
                   </div>
 
-                  <p className="text-xl text-gray-500 mt-2">Add to Wishlist</p>
+                  {/* <p className="text-xl text-gray-500 mt-2">Add to Wishlist</p> */}
                 </div>
               </div>
             </SmartLink>
