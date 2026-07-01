@@ -87,7 +87,7 @@ text-sm
 font-semibold
 text-white
 bg-gradient-to-r
-from-red-500
+from-green-500
 to-red-600
 shadow-md
 ">
