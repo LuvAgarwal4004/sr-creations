@@ -1,4 +1,5 @@
 "use client";
+
 import { useState } from "react";
 
 export default function ProductZoom({ image }) {
@@ -6,6 +7,9 @@ export default function ProductZoom({ image }) {
   const [zoomPosition, setZoomPosition] = useState("50% 50%");
 
   const handleMouseMove = (e) => {
+    // Disable zoom on touch devices / small screens
+    if (window.innerWidth < 1024) return;
+
     const { left, top, width, height } =
       e.currentTarget.getBoundingClientRect();
 
@@ -16,29 +20,72 @@ export default function ProductZoom({ image }) {
   };
 
   return (
-    <div className="flex gap-4 items-start">
-      
-      {/* LEFT: Main Image (FIXED SIZE) */}
+    <div className="relative w-full max-w-[520px] mx-auto">
+
+      {/* Main Image */}
+
       <div
-        className="w-[400px] h-[450px] flex-shrink-0 border rounded-lg overflow-hidden bg-gray-100 cursor-crosshair"
-        onMouseEnter={() => setShowZoom(true)}
+        className="
+          w-full
+          aspect-[4/5]
+          rounded-2xl
+          border
+          bg-white
+          overflow-hidden
+          shadow-md
+          lg:cursor-crosshair
+        "
+        onMouseEnter={() => {
+          if (window.innerWidth >= 1024) {
+            setShowZoom(true);
+          }
+        }}
         onMouseLeave={() => setShowZoom(false)}
         onMouseMove={handleMouseMove}
-        style={{
-          backgroundImage: `url(${image})`,
-          backgroundSize: "cover",
-          backgroundPosition: "center",
-        }}
-      />
+      >
+        <img
+          src={image}
+          alt="Product"
+          className="
+            w-full
+            h-full
+            object-contain
+            select-none
+            pointer-events-none
+            p-4
+          "
+          draggable={false}
+        />
+      </div>
 
-      {/* RIGHT: Zoom Panel (ONLY SHOW ON HOVER) */}
+      {/* Zoom Panel (Desktop Only) */}
+
       {showZoom && (
         <div
-          className="w-[200px] h-[200px] flex-shrink-0 border rounded-lg bg-no-repeat"
+          className="
+            hidden
+            lg:block
+
+            absolute
+            top-0
+            left-full
+            ml-6
+
+            w-[320px]
+            h-[400px]
+
+            rounded-2xl
+            border
+            bg-white
+            shadow-2xl
+            overflow-hidden
+            z-50
+          "
           style={{
             backgroundImage: `url(${image})`,
+            backgroundRepeat: "no-repeat",
             backgroundPosition: zoomPosition,
-            backgroundSize: "500%",
+            backgroundSize: "250%",
           }}
         />
       )}

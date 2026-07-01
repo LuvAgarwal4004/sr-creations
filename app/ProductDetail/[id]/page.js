@@ -38,16 +38,16 @@ export default async function ProductPage({ params }) {
             {/* LEFT: Image + Zoom */}
             <div
               className="
-              w-full
-max-w-xl
-mx-auto
+w-full
 bg-white
 rounded-3xl
 shadow-lg
 border
-p-6
+p-4 sm:p-6
 flex
 justify-center
+items-center
+overflow-hidden
 "
             >
               <ProductZoom image={trend.image} />
@@ -78,7 +78,20 @@ h-fit
                     ₹{trend.price}
                   </p>
 
-                  <p className="text-green-600 text-3xl font-bold">
+                  <p className="
+inline-flex
+items-center
+rounded-full
+px-4
+py-1.5
+text-sm
+font-semibold
+text-white
+bg-gradient-to-r
+from-red-500
+to-red-600
+shadow-md
+">
                     ₹{trend.discountedPrice}
                   </p>
                   <div
@@ -148,9 +161,17 @@ space-y-1
               </>
               )}
 
-              <p className="leading-8 text-gray-600 text-[16px]">
-                {trend.description}
-              </p>
+              <div className="rounded-2xl border bg-white p-6">
+
+                <h2 className="text-xl font-bold mb-3">
+                  Description
+                </h2>
+
+                <p className="leading-8 text-gray-600">
+                  {trend.description}
+                </p>
+
+              </div>
               <div
                 className="
 bg-gradient-to-br
@@ -166,7 +187,7 @@ p-6
                   Specifications
                 </h2>
 
-                <p className="text-gray-700 whitespace-pre-wrap">
+                <p className="leading-8 text-gray-700 whitespace-pre-wrap">
                   {trend.specifications}
                 </p>
 
