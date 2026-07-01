@@ -88,7 +88,7 @@ font-semibold
 text-white
 bg-gradient-to-r
 from-green-500
-to-red-600
+to-green-600
 shadow-md
 ">
                     ₹{trend.discountedPrice}
