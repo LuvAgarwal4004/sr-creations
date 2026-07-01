@@ -366,7 +366,7 @@ hover:shadow-blue-300
                 </SmartLink>
               )
             }
-            <SmartLink href="/">
+            {/* <SmartLink href="/">
 
               <button
                 className="
@@ -385,7 +385,7 @@ transition
                 Continue Shopping
               </button>
 
-            </SmartLink>
+            </SmartLink> */}
           </div>
 
         </div>

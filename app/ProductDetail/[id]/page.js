@@ -23,56 +23,32 @@ export default async function ProductPage({ params }) {
   const gstAmount =
     displayPrice - taxableAmount;
   return (
-    <div className="min-h-screen bg-gradient-to-br
-from-slate-50
-via-blue-50
-to-indigo-50 flex">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-blue-50 flex">
       <FilterSidebar />
 
       <main className="flex-1">
-        <div
-          className="
-max-w-[1400px]
-mx-auto
-px-4
-sm:px-6
-lg:px-8
-py-8
-"
-        >
+        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
 
           {/* <div className="mb-4">
             <MobileFilterDrawer />
           </div> */}
 
-          <div
-            className="
-  bg-white
-  rounded-3xl
-  shadow-lg
-  border
-  border-gray-200
-  overflow-hidden
-  lg:flex
-"
-          >
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
             {/* LEFT: Image + Zoom */}
             <div
               className="
-    w-full
-    xl:w-1/2
-    bg-gray-50
-    p-4
-    sm:p-6
-    lg:p-8
-    flex
-    justify-center
-    items-center
-    border-b
-    xl:border-b-0
-    xl:border-r
-  "
+              w-full
+max-w-xl
+mx-auto
+bg-white
+rounded-3xl
+shadow-lg
+border
+p-6
+flex
+justify-center
+"
             >
               <ProductZoom image={trend.image} />
             </div>
@@ -80,42 +56,23 @@ py-8
             {/* RIGHT: Product Info */}
             <div
               className="
-flex-1
 bg-white
 rounded-3xl
 shadow-lg
 border
-border-gray-200
-p-6
-sm:p-8
-space-y-8
-xl:sticky
-xl:top-8
+p-8
+space-y-7
+lg:sticky
+lg:top-8
 h-fit
 "
             >
 
-              <h1
-                className="
-text-3xl
-lg:text-4xl
-font-bold
-leading-tight
-text-gray-900
-"
-              >
+              <h1 className="text-3xl md:text-4xl font-bold text-gray-900 leading-tight">
                 {trend.title}
               </h1>
               {trend.isDiscount ? (
-                <div
-                  className="
-bg-gray-50
-border
-rounded-2xl
-p-5
-space-y-2
-"
-                >
+                <div className="space-y-2">
 
                   <p className="line-through text-gray-400">
                     ₹{trend.price}
@@ -124,13 +81,24 @@ space-y-2
                   <p className="text-green-600 text-3xl font-bold">
                     ₹{trend.discountedPrice}
                   </p>
-                  <p className="text-sm text-gray-500">
-                    Inclusive of GST
-                  </p>
+                  <div
+                    className="
+bg-gray-50
+rounded-2xl
+border
+p-4
+space-y-1
+"
+                  >
 
-                  <p className="text-sm text-gray-600">
-                    Exclusive of GST: ₹{taxableAmount.toFixed(2)}
-                  </p>
+                    <p className="text-sm text-gray-500">
+                      Inclusive of GST
+                    </p>
+
+                    <p className="text-sm text-gray-600">
+                      Exclusive of GST: ₹{taxableAmount.toFixed(2)}
+                    </p>
+                  </div>
                   {/* 
                   <p className="text-sm text-gray-600">
                     GST (18%): ₹{gstAmount.toFixed(2)}
@@ -138,15 +106,18 @@ space-y-2
 
                   <span
                     className="
-      inline-flex
-items-center
-rounded-full
-bg-red-100
-text-red-600
+      inline-block
+      bg-gradient-to-r
+from-red-500
+to-red-600
+shadow-md
 font-semibold
-px-4
-py-1
-text-sm
+      text-white
+      px-3
+      py-1
+      rounded-full
+      mt-2
+      text-sm
     "
                   >
                     {trend.discountPercent}% OFF
@@ -157,61 +128,50 @@ text-sm
                 <p className="text-xl sm:text-2xl text-green-600 font-semibold">
                   ₹{trend.price}
                 </p>
-                <p className="text-sm text-gray-500">
-                  Inclusive of GST
-                </p>
+                <div
+                  className="
+bg-gray-50
+rounded-2xl
+border
+p-4
+space-y-1
+"
+                >
+                  <p className="text-sm text-gray-500">
+                    Inclusive of GST
+                  </p>
 
-                <p className="text-sm text-gray-600">
-                  Exclusive of GST: ₹{taxableAmount.toFixed(2)}
-                </p>
+                  <p className="text-sm text-gray-600">
+                    Exclusive of GST: ₹{taxableAmount.toFixed(2)}
+                  </p>
+                </div>
               </>
               )}
+
+              <p className="leading-8 text-gray-600 text-[16px]">
+                {trend.description}
+              </p>
               <div
                 className="
-bg-white
-border
+bg-gradient-to-br
+from-white
+to-gray-50
 rounded-2xl
-p-5
+border
+p-6
 "
               >
-                <h2 className="font-semibold text-lg mb-3">
-                  Description
-                </h2>
-                <p className="text-gray-600 tracking-wide leading-7">
-                  {trend.description}
-                </p>
-              </div>
-              {/* <div className="border-t pt-5">
 
                 <h2 className="font-bold text-xl mb-3">
                   Specifications
-                </h2> */}
-              <div
-                className="
-bg-white
-border
-rounded-2xl
-p-5
-"
-              >
-
-                <h2 className="text-xl font-bold mb-4">
-                  Specifications
                 </h2>
 
-                <p className="leading-7 text-gray-700 whitespace-pre-wrap">
+                <p className="text-gray-700 whitespace-pre-wrap">
                   {trend.specifications}
                 </p>
 
               </div>
-              <div
-                className="
-sticky
-bottom-4
-bg-white
-pt-4
-"
-              >
+              <div className="pt-4">
 
                 <AddToCartButton id2={trend._id} image={trend.image} />
               </div>
