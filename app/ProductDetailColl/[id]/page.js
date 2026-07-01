@@ -30,191 +30,134 @@ export default async function ProductPage({ params }) {
     displayPrice - taxableAmount;
 
   return (
-    <div className="min-h-screen bg-gradient-to-br
-from-slate-50
-via-blue-50
-to-indigo-50 flex">
-      <FilterSidebar />
+    <div className="min-h-screen bg-gray-50 flex">
+      {/* <FilterSidebar /> */}
 
       <main className="flex-1">
-        <div className="max-w-[1400px] mx-auto p-4 sm:p-6 lg:p-8">
+        <div className="max-w-7xl mx-auto px-4 py-8">
 
-          {/* <div className="mb-4">
-            <MobileFilterDrawer />
-          </div> */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
-          <div
-            className="
-flex
-flex-col
-xl:flex-row
-gap-8
-"
-          >
+            {/* IMAGE */}
 
-            {/* LEFT: Image + Zoom */}
-            <div
-              className="
-    w-full
-    xl:w-1/2
-    bg-gray-50
-    p-4
-    sm:p-6
-    lg:p-8
-    flex
-    justify-center
-    items-center
-    border-b
-    xl:border-b-0
-    xl:border-r
-  "
-            >
+            <div className="bg-white rounded-3xl border shadow-lg p-4 lg:p-6">
               <ProductZoom image={trend.image} />
             </div>
 
-            {/* RIGHT: Product Info */}
-            <div
-              className="
-flex-1
-bg-white
-rounded-3xl
-shadow-lg
-border
-border-gray-200
-p-6
-sm:p-8
-space-y-8
-xl:sticky
-xl:top-8
-h-fit
-"
-            >
+            {/* PRODUCT DETAILS */}
 
-              <h1
-                className="
-text-3xl
-lg:text-4xl
-font-bold
-leading-tight
-text-gray-900
-"
-              >
-                {trend.title}
-              </h1>
-              {trend.isDiscount ? (
-                <div
-                  className="
-bg-gray-50
-border
-rounded-2xl
-p-5
-space-y-2
-"
-                >
+            <div className="space-y-6 lg:sticky lg:top-8">
 
-                  <p className="line-through text-gray-400">
-                    ₹{trend.price}
-                  </p>
+              <div className="bg-white rounded-3xl shadow-lg border p-8">
 
-                  <p className="text-green-600 text-3xl font-bold">
-                    ₹{trend.discountedPrice}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Inclusive of GST
-                  </p>
+                <h1 className="text-3xl font-bold text-gray-900">
+                  {trend.title}
+                </h1>
 
-                  <p className="text-sm text-gray-600">
-                    Exclusive of GST: ₹{taxableAmount.toFixed(2)}
-                  </p>
+                {trend.isDiscount ? (
 
-                  {/* <p className="text-sm text-gray-600">
-                    GST (18%): ₹{gstAmount.toFixed(2)}
-                  </p> */}
+                  <div className="mt-6">
 
-                  <span
-                    className="
-      inline-flex
-items-center
-rounded-full
-bg-red-100
-text-red-600
-font-semibold
-px-4
-py-1
-text-sm
-    "
-                  >
-                    {trend.discountPercent}% OFF
-                  </span>
+                    <div className="flex items-center gap-4 flex-wrap">
+
+                      <p className="text-gray-400 line-through text-xl">
+                        ₹{trend.price}
+                      </p>
+
+                      <p className="text-4xl font-bold text-green-600">
+                        ₹{trend.discountedPrice}
+                      </p>
+
+                      <span className="bg-red-500 text-white px-3 py-1 rounded-full text-sm font-semibold">
+                        {trend.discountPercent}% OFF
+                      </span>
+
+                    </div>
+
+                    <div className="mt-4 text-sm text-gray-600 space-y-1">
+
+                      <p>Inclusive of GST</p>
+
+                      <p>
+                        Exclusive of GST :
+                        <span className="font-semibold ml-1">
+                          ₹{taxableAmount.toFixed(2)}
+                        </span>
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                ) : (
+
+                  <div className="mt-6">
+
+                    <p className="text-4xl font-bold text-green-600">
+                      ₹{trend.price}
+                    </p>
+
+                    <div className="mt-4 text-sm text-gray-600 space-y-1">
+
+                      <p>Inclusive of GST</p>
+
+                      <p>
+                        Exclusive of GST :
+                        <span className="font-semibold ml-1">
+                          ₹{taxableAmount.toFixed(2)}
+                        </span>
+                      </p>
+
+                    </div>
+
+                  </div>
+
+                )}
+
+                <div className="mt-8">
+
+                  <AddToCartButton
+                    id1={collectionId}
+                    id2={seq}
+                    image={trend.image}
+                  />
 
                 </div>
-              ) : (
-                <>
-                  <p className="text-xl sm:text-2xl text-green-600 font-semibold">
-                    ₹{trend.price}
-                  </p>
-                  <p className="text-sm text-gray-500">
-                    Inclusive of GST
-                  </p>
 
-                  <p className="text-sm text-gray-600">
-                    Exclusive of GST: ₹{taxableAmount.toFixed(2)}
-                  </p>
-                </>
-              )}
+              </div>
 
-              <div
-                className="
-bg-white
-border
-rounded-2xl
-p-5
-"
-              >
+              {/* DESCRIPTION */}
 
-                <h2 className="font-semibold text-lg mb-3">
+              <div className="bg-white rounded-3xl border shadow-lg p-8">
+
+                <h2 className="text-2xl font-bold mb-4">
                   Description
                 </h2>
 
-                <p className="text-gray-600 leading-7 tracking-wide">
+                <p className="leading-8 text-gray-600">
                   {trend.description}
                 </p>
+
               </div>
-              {/* <div className="border-t pt-5">
 
-                <h2 className="font-bold text-xl mb-3">
-                  Specifications
-                </h2> */}
-              <div
-                className="
-bg-white
-border
-rounded-2xl
-p-5
-"
-              >
+              {/* SPECIFICATIONS */}
 
-                <h2 className="text-xl font-bold mb-4">
+              <div className="bg-white rounded-3xl border shadow-lg p-8">
+
+                <h2 className="text-2xl font-bold mb-4">
                   Specifications
                 </h2>
-                <p className="leading-7 text-gray-700 whitespace-pre-wrap">
+
+                <p className="whitespace-pre-wrap leading-8 text-gray-700">
                   {trend.specifications}
                 </p>
 
               </div>
-              <div
-                className="
-sticky
-bottom-4
-bg-white
-pt-4
-"
-              >
-                <AddToCartButton id1={collectionId} id2={seq} image={trend.image} />
-              </div>
+
             </div>
 
           </div>
+
         </div>
       </main>
     </div>
