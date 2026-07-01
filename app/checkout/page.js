@@ -12,6 +12,8 @@ import PaymentStep from '@/components/PaymentStep';
 import { useRouter } from "next/navigation";
 import { useEffect, useState }
   from "react";
+import Loading from "@/app/loading";
+
 
 const steps = ['Login', 'Delivery Address', 'Order Summary', 'Payment'];
 
@@ -62,34 +64,66 @@ export default function Checkout() {
   //   validate();
 
   // }, [step]);
+
+
+
+  // useEffect(() => {
+  //   const init = async () => {
+  //     const currentRes =
+  //       await fetch("/api/checkout/current");
+
+  //     const current =
+  //       await currentRes.json();
+  //       console.log("CURRENT:", current);
+
+  //     setCheckoutState(current);
+
+  //     const validateRes =
+  //       await fetch(`/api/checkout/validate?step=${step}`);
+
+  //     const validate =
+  //       await validateRes.json();
+
+  //     if (!validate.allowed) {
+  //       router.replace("/Cart");
+  //       return;
+  //     }
+
+  //     setChecking(false);
+  //   };
+
+  //   init();
+  // }, [step, router]);
+
+
+
   useEffect(() => {
     const init = async () => {
-      const currentRes =
-        await fetch("/api/checkout/current");
+      try {
+        const [currentRes, validateRes] = await Promise.all([
+          fetch("/api/checkout/current"),
+          fetch(`/api/checkout/validate?step=${step}`)
+        ]);
 
-      const current =
-        await currentRes.json();
-        console.log("CURRENT:", current);
+        const current = await currentRes.json();
+        const validate = await validateRes.json();
 
-      setCheckoutState(current);
+        setCheckoutState(current);
 
-      const validateRes =
-        await fetch(`/api/checkout/validate?step=${step}`);
+        if (!validate.allowed) {
+          router.replace("/Cart");
+          return;
+        }
 
-      const validate =
-        await validateRes.json();
-
-      if (!validate.allowed) {
+        setChecking(false);
+      } catch (err) {
+        console.error(err);
         router.replace("/Cart");
-        return;
       }
-
-      setChecking(false);
     };
 
     init();
   }, [step, router]);
-
 
   // const {
   //   orderCompleted
@@ -145,28 +179,53 @@ export default function Checkout() {
   // ]);
   if (checking) {
 
-    return null;
+    return (
+      <>
+        <div className="h-screen flex items-center justify-center">
+          <Loading />
+        </div>
+      </>
+    );
 
   }
 
   return (
-    <div className='px-10 mt-5 lg:px-20'>
-      <Box sx={{ width: '100%' }}>
-        <Stepper activeStep={step - 1}>
-          {steps.map((label) => (
-            <Step key={label}>
-              <StepLabel>{label}</StepLabel>
-            </Step>
-          ))}
-        </Stepper>
+    <div className="px-4 sm:px-6 lg:px-20 mt-5">
+      <div className="max-w-6xl mx-auto">
 
-        <div className='mt-10'>
-          {step === 2 && <DeliveryAddressForm />}
-          {step === 3 && <OrderSummary />}
-          {step === 4 && <PaymentStep />}
-        </div>
+        <Box sx={{ width: "100%" }}>
 
-      </Box>
+          <Stepper
+            activeStep={step - 1}
+            alternativeLabel
+          >
+            {steps.map((label) => (
+              <Step key={label}>
+                <StepLabel
+                  sx={{
+                    "& .MuiStepLabel-label": {
+                      display: {
+                        xs: "none",
+                        sm: "block",
+                      },
+                    },
+                  }}
+                >
+                  {label}
+                </StepLabel>
+              </Step>
+            ))}
+          </Stepper>
+
+          <div className="mt-6 md:mt-10">
+            {step === 2 && <DeliveryAddressForm />}
+            {step === 3 && <OrderSummary />}
+            {step === 4 && <PaymentStep />}
+          </div>
+
+        </Box>
+
+      </div>
     </div>
   );
 }

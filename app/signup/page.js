@@ -179,123 +179,187 @@ const page = () => {
 
     };
   return (
+    <div className="min-h-screen bg-gradient-to-br from-slate-900 via-blue-900 to-indigo-950 flex items-center justify-center px-4 py-10">
 
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 px-4">
-      <div className="w-full max-w-md bg-white rounded-xl shadow-lg p-8">
+      <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden">
 
-        <h2 className="text-2xl font-semibold text-center mb-6">
-          Create Account ✨
-        </h2>
+        {/* HEADER */}
 
-        <form className="space-y-5" onSubmit={handleSignup}>
+        <div className="bg-gradient-to-r from-blue-600 to-indigo-700 py-10 px-8 text-center">
 
-          <div>
-            <label className="block text-sm font-medium mb-1">UserName</label>
-            <input
-              value={name}
-              onChange={(e) =>
-                setName(e.target.value)
-              }
-              type="text"
-              placeholder="UserName"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
+          <div className="h-20 w-20 rounded-full bg-white/20 mx-auto flex items-center justify-center text-4xl mb-5">
+            ✨
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Email</label>
-            <input
-              value={email}
-              onChange={(e) =>
-                setEmail(e.target.value)
-              }
-              type="email"
-              placeholder="you@example.com"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
+          <h1 className="text-3xl font-bold text-white">
+            Create Account
+          </h1>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Password</label>
-            <input
-              value={password}
-              onChange={(e) =>
-                setPassword(e.target.value)
-              }
-              type="password"
-              placeholder="Create a strong password"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
+          <p className="text-blue-100 mt-2">
+            Join us and start shopping today
+          </p>
 
-          <div>
-            <label className="block text-sm font-medium mb-1">Confirm Password</label>
-            <input
-              value={confirmPassword}
-              onChange={(e) =>
-                setConfirmPassword(e.target.value)
-              }
-              type="password"
-              placeholder="Repeat password"
-              className="w-full px-4 py-2 border rounded-lg focus:outline-none focus:ring-2 focus:ring-black"
-            />
-          </div>
+        </div>
 
-          <button
-            type="submit"
-            className="w-full bg-black text-white py-2
-             rounded-lg hover:opacity-90 transition"
+        {/* BODY */}
+
+        <div className="p-6 sm:p-8">
+
+          <form
+            onSubmit={handleSignup}
+            className="space-y-5"
           >
-            Sign Up
-          </button>
 
-        </form>
-        {
-          otpSent && (
+            <div>
 
-            <div className="mt-4">
+              <label className="block mb-2 text-sm font-semibold text-gray-700">
+                Username
+              </label>
+
+              <input
+                value={name}
+                onChange={(e) => setName(e.target.value)}
+                type="text"
+                placeholder="John Doe"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:ring-4 focus:ring-blue-100 focus:border-blue-600"
+              />
+
+            </div>
+
+            <div>
+
+              <label className="block mb-2 text-sm font-semibold text-gray-700">
+                Email
+              </label>
+
+              <input
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                type="email"
+                placeholder="you@example.com"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:ring-4 focus:ring-blue-100 focus:border-blue-600"
+              />
+
+            </div>
+
+            <div>
+
+              <label className="block mb-2 text-sm font-semibold text-gray-700">
+                Password
+              </label>
+
+              <input
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                type="password"
+                placeholder="Create a strong password"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:ring-4 focus:ring-blue-100 focus:border-blue-600"
+              />
+
+            </div>
+
+            <div>
+
+              <label className="block mb-2 text-sm font-semibold text-gray-700">
+                Confirm Password
+              </label>
+
+              <input
+                value={confirmPassword}
+                onChange={(e) => setConfirmPassword(e.target.value)}
+                type="password"
+                placeholder="Repeat password"
+                className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:ring-4 focus:ring-blue-100 focus:border-blue-600"
+              />
+
+            </div>
+
+            <button
+              type="submit"
+              className="w-full rounded-xl bg-gradient-to-r from-blue-600 to-indigo-700 py-3.5 font-semibold text-white shadow-lg hover:scale-[1.02] active:scale-[0.98] transition-all"
+            >
+              Sign Up
+            </button>
+
+          </form>
+
+          {otpSent && (
+
+            <div className="mt-8 border-t pt-8">
+
+              <div className="flex justify-center">
+
+                <div className="h-16 w-16 rounded-full bg-gradient-to-r from-green-500 to-emerald-600 flex items-center justify-center text-white text-3xl shadow-lg">
+                  📧
+                </div>
+
+              </div>
+
+              <h2 className="text-center text-2xl font-bold mt-5">
+                Verify Email
+              </h2>
+
+              <p className="text-center text-gray-500 mt-2">
+                Enter the OTP sent to
+              </p>
+
+              <p className="text-center text-blue-600 font-semibold break-all mt-1">
+                {email}
+              </p>
 
               <input
                 value={otp}
-                onChange={(e) =>
-                  setOtp(e.target.value)
-                }
+                onChange={(e) => setOtp(e.target.value)}
                 placeholder="Enter OTP"
-                className="w-full border p-2 rounded"
+                maxLength={6}
+                className="w-full mt-6 rounded-xl border border-gray-300 px-4 py-3 text-center text-xl tracking-[0.4em] outline-none transition focus:ring-4 focus:ring-green-100 focus:border-green-500"
               />
 
               <button
-                onClick={
-                  handleVerifyOtp
-                }
-                className="w-full bg-green-600 text-white py-2 rounded mt-2"
+                onClick={handleVerifyOtp}
+                className="w-full mt-5 rounded-xl bg-gradient-to-r from-green-600 to-emerald-600 py-3.5 font-semibold text-white shadow-lg hover:scale-[1.02] transition"
               >
                 Verify OTP
               </button>
-              <button type="button" disabled={timer > 0} onClick={handleResendOtp}>
-                {
-                  timer > 0
-                    ? `Resend in ${timer}s`
-                    : "Resend OTP"
-                }
+
+              <button
+                type="button"
+                disabled={timer > 0}
+                onClick={handleResendOtp}
+                className="w-full mt-4 text-blue-600 font-medium hover:underline disabled:text-gray-400 disabled:no-underline"
+              >
+                {timer > 0
+                  ? `Resend OTP in ${timer}s`
+                  : "Resend OTP"}
               </button>
 
             </div>
 
-          )
-        }
+          )}
 
-        <p className="text-center text-sm mt-6">
-          Already have an account?{" "}
-          <a href="/login" className="font-medium hover:underline">
-            Login
-          </a>
-        </p>
+          <div className="mt-10 border-t pt-6">
+
+            <p className="text-center text-gray-600">
+
+              Already have an account?{" "}
+
+              <a
+                href="/login"
+                className="font-semibold text-blue-600 hover:text-blue-700 hover:underline"
+              >
+                Login
+              </a>
+
+            </p>
+
+          </div>
+
+        </div>
 
       </div>
-    </div>
 
-  )
+    </div>
+  );
 }
 
 export default page

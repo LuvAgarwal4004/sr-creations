@@ -82,7 +82,7 @@ export default function TrackOrderPage() {
           h-20
           w-20
           border-b-4
-          border-black
+          border-blue-600
         " />
       </div>
     );
@@ -93,7 +93,10 @@ export default function TrackOrderPage() {
     return (
       <div className="
         min-h-screen
-        bg-gray-50
+        bg-gradient-to-br
+from-slate-100
+via-white
+to-blue-50
         flex
         items-center
         justify-center
@@ -136,12 +139,16 @@ export default function TrackOrderPage() {
 
           <SmartLink href="/">
             <button className="
-              bg-black
+              bg-gradient-to-r
+from-blue-600
+to-indigo-700
               text-white
               px-8
               py-3
               rounded-2xl
-              hover:bg-gray-800
+              hover:scale-105
+shadow-lg
+transition-all
               transition
             ">
               Continue Shopping
@@ -186,17 +193,9 @@ export default function TrackOrderPage() {
   };
 
   return (
-    <div className="
-      min-h-screen
-      bg-gray-50
-      p-4
-      md:p-8
-    ">
+    <div className="min-h-screen bg-gradient-to-br from-slate-100 via-white to-blue-50 py-8 px-4 sm:px-6 lg:px-8">
 
-      <div className="
-        max-w-6xl
-        mx-auto
-      ">
+      <div className="max-w-7xl mx-auto">
         <div className="space-y-10">
 
           {orders.map((order) => {
@@ -207,18 +206,24 @@ export default function TrackOrderPage() {
             return (
               <div
                 key={order._id}
-                className="space-y-8 pb-10 border-b"
+                className="
+bg-white
+rounded-3xl
+shadow-xl
+border
+border-gray-100
+overflow-hidden
+mb-10
+"
               >
 
                 {/* HEADER */}
                 <div className="
-            bg-white
-            rounded-3xl
-            border
-            shadow-sm
-            p-8
-            mb-8
-            ">
+           bg-gradient-to-r
+from-blue-600
+to-indigo-700
+text-white
+p-6 md:p-8 space-y-8">
 
                   <div className="
             flex
@@ -232,15 +237,15 @@ export default function TrackOrderPage() {
                     <div >
 
                       <h1 className="
-                text-4xl
+                text-3xl sm:text-4xl
                 font-bold
-                text-gray-900
+                text-white
               ">
                         Track Order
                       </h1>
 
                       <p className="
-                text-gray-500
+                text-blue-100 break-all
                 mt-3
               ">
                         Order ID:
@@ -262,7 +267,8 @@ export default function TrackOrderPage() {
                     </div>
 
                     <div className="
-              bg-black
+              bg-white/20
+backdrop-blur-md
               text-white
               px-8
               py-5
@@ -300,8 +306,7 @@ export default function TrackOrderPage() {
             border
             border-red-200
             rounded-3xl
-            p-8
-            mb-8
+            p-6 md:p-8 space-y-8
           ">
 
                       <h2 className={`
@@ -344,12 +349,13 @@ export default function TrackOrderPage() {
                   !["cancelled", "returned"].includes(order.status) && (
 
                     <div className="
-            bg-white
-            rounded-3xl
-            border
-            shadow-sm
-            p-8
-            mb-8
+           bg-gradient-to-br
+from-white
+to-blue-50
+rounded-3xl
+shadow-lg
+border
+            p-6 md:p-8 space-y-8
           ">
 
                       <h2 className="
@@ -399,7 +405,7 @@ export default function TrackOrderPage() {
                         h-1
                         z-0
                         ${active
-                                    ? "bg-black"
+                                    ? "bg-blue-600"
                                     : "bg-gray-200"
                                   }
                       `} />
@@ -411,6 +417,8 @@ export default function TrackOrderPage() {
                       z-10
                       w-10
                       h-10
+md:w-12
+md:h-12
                       rounded-full
                       flex
                       items-center
@@ -419,15 +427,15 @@ export default function TrackOrderPage() {
                       mb-4
                       transition-all
                       ${active
-                                  ? "bg-black text-white"
-                                  : "bg-gray-200 text-gray-500"
+                                  ? "bg-gradient-to-r from-blue-600 to-indigo-700 text-white shadow-lg"
+                                  : "bg-gray-150 text-gray-500"
                                 }
                     `}>
                                 {index + 1}
                               </div>
 
                               <p className={`
-                      text-sm
+                      text-xs sm:text-sm
                       font-semibold
                       ${active
                                   ? "text-black"
@@ -453,9 +461,8 @@ export default function TrackOrderPage() {
           bg-white
           rounded-3xl
           border
-          shadow-sm
-          p-8
-          mb-8
+          shadow-lg
+          p-6 md:p-8 space-y-8
         ">
 
                   <h2 className="
@@ -474,28 +481,37 @@ export default function TrackOrderPage() {
                         key={index}
                         className="
                   flex
+flex-col
+sm:flex-row
                   items-center
                   gap-5
-                  border
                   rounded-2xl
-                  p-4
+border
+border-gray-200
+hover:shadow-lg
+transition-all
+duration-300
+p-5
                 "
                       >
 
                         <img
                           src={item.image}
                           className="
-                    w-24
-                    h-24
+                    w-28
+                    h-28
+                    sm:w-24
+sm:h-24
+                    shadow-md
                     object-cover
                     rounded-xl
                   "
                         />
 
-                        <div className="flex-1">
+                        <div className="flex-1 text-center sm:text-left">
 
                           <h3 className="
-                    text-lg
+                    text-xl
                     font-semibold
                   ">
                             {item.name}
@@ -511,7 +527,7 @@ export default function TrackOrderPage() {
                         </div>
 
                         <div className="
-                  text-right
+                  text-center sm:text-right
                 ">
 
                           <p className="
@@ -530,7 +546,20 @@ export default function TrackOrderPage() {
                   </div>
 
                 </div>
-                <div className="space-y-2 border-t pt-4">
+                <div
+                  className="
+bg-gradient-to-br
+from-white
+to-gray-50
+rounded-3xl
+border
+shadow-lg
+p-8
+"
+                >
+                  <h2 className="text-2xl font-bold mb-6">
+                    Order Summary
+                  </h2>
 
                   <div className="flex justify-between">
                     <span>Original Amount</span>
@@ -585,10 +614,12 @@ export default function TrackOrderPage() {
                 </div>
                 {/* ADDRESS */}
                 <div className="
-          bg-white
-          rounded-3xl
-          border
-          shadow-sm
+          bg-gradient-to-br
+from-white
+to-gray-50
+rounded-3xl
+shadow-lg
+border
           p-8
         ">
 
@@ -643,13 +674,17 @@ export default function TrackOrderPage() {
                       }
                       className="
       mt-8
-      bg-red-500
+      bg-gradient-to-r
+from-red-500
+to-red-600
       text-white
       px-6
       py-3
       rounded-2xl
       hover:bg-red-600
       transition
+      shadow-lg
+hover:scale-105
     "
                     >
                       Cancel Order
