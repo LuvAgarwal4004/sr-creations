@@ -47,7 +47,6 @@ p-4 sm:p-6
 flex
 justify-center
 items-center
-overflow-hidden
 "
             >
               <ProductZoom image={trend.image} />
