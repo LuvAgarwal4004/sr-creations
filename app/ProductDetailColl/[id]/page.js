@@ -34,25 +34,13 @@ export default async function ProductPage({ params }) {
       {/* <FilterSidebar /> */}
 
       <main className="flex-1">
-        <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div className="max-w-7xl mx-auto px-4 py-8">
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
 
             {/* IMAGE */}
 
-            <div
-              className="
-w-full
-bg-white
-rounded-3xl
-shadow-lg
-border
-p-4 sm:p-6
-flex
-justify-center
-items-center
-"
-            >
+            <div className="bg-white rounded-3xl border shadow-lg p-4 lg:p-6">
               <ProductZoom image={trend.image} />
             </div>
 
