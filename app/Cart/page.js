@@ -337,40 +337,60 @@ const Page = () => {
                   : item.price;
 
               return (
-                <div key={item.id} className="rounded-lg border p-4 shadow-sm dark:bg-gray-800">
-                  <div className=" flex
+                <div key={item.cartId} className="rounded-lg border p-4 shadow-sm dark:bg-gray-800">
+                  <div
+                    className="
+    flex
     flex-col
     sm:flex-row
     sm:items-center
-    gap-4">
+    gap-4
+"
+                  >
 
-                    <img src={item.image} className="
-    w-full
-    h-56
-    object-contain
-    rounded-lg
+                    <img
+                      src={item.image}
+                      className="
+      w-full
+      h-56
+      object-contain
+      rounded-lg
 
-    sm:w-28
-    sm:h-28
+      sm:w-28
+      sm:h-28
 
-    lg:w-24
-    lg:h-24
-    lg:flex-shrink-0
-  " />
+      lg:w-24
+      lg:h-24
+      lg:flex-shrink-0
+    "
+                    />
 
-                    <div className="flex flex-col gap-2">
-                      <p className="font-semibold hover:font-extrabold hover:font-amber dark:text-white">
-                        {item.title}</p>
+                    {/* THIS IS IMPORTANT */}
+                    <div className="flex-1">
+                      <p className="font-semibold hover:font-extrabold hover:text-amber-500">
+                        {item.title}
+                      </p>
                     </div>
 
-                    <div className="flex flex-col gap-2">
-                      <p className="font-bold dark:text-white">
+                    <div
+                      className="
+      flex
+      flex-col
+      gap-3
+
+      sm:items-start
+
+      lg:items-end
+    "
+                    >
+                      <p className="font-bold">
                         ₹{itemPrice * item.qty}
                       </p>
-                      <div className="flex items-center border rounded-lg overflow-hidden">
+
+                      <div className="flex items-center rounded-lg overflow-hidden border">
 
                         <button
-                          onClick={() => decreaseQty((item.cartId))}
+                          onClick={() => decreaseQty(item.cartId)}
                           className="px-3 py-1 bg-gray-200"
                         >
                           −
@@ -381,18 +401,26 @@ const Page = () => {
                         </span>
 
                         <button
-                          onClick={() => increaseQty((item.cartId))}
+                          onClick={() => increaseQty(item.cartId)}
                           className="px-3 py-1 bg-gray-200"
                         >
                           +
                         </button>
 
                       </div>
+
                     </div>
 
                     <button
                       onClick={() => removeFromCart(item.cartId)}
-                      className="text-red-500"
+                      className="
+      text-red-500
+      font-medium
+
+      sm:self-start
+
+      lg:self-center
+    "
                     >
                       Remove
                     </button>
