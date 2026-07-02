@@ -268,7 +268,8 @@ const Page = () => {
                     />
 
                     <div className="flex-1">
-                      <p className="font-semibold hover:font-extrabold hover:font-amber dark:text-white">{item.title}</p>
+                      <p className="font-semibold hover:font-extrabold
+                       hover:font-amber dark:text-white">{item.title}</p>
                     </div>
 
                     <div
@@ -337,9 +338,25 @@ const Page = () => {
 
               return (
                 <div key={item.id} className="rounded-lg border p-4 shadow-sm dark:bg-gray-800">
-                  <div className="flex justify-between items-center">
+                  <div className=" flex
+    flex-col
+    sm:flex-row
+    sm:items-center
+    gap-4">
 
-                    <img src={item.image} className="h-20 w-20" />
+                    <img src={item.image} className="
+    w-full
+    h-56
+    object-contain
+    rounded-lg
+
+    sm:w-28
+    sm:h-28
+
+    lg:w-24
+    lg:h-24
+    lg:flex-shrink-0
+  " />
 
                     <div className="flex flex-col gap-2">
                       <p className="font-semibold hover:font-extrabold hover:font-amber dark:text-white">
