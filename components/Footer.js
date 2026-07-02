@@ -1,18 +1,84 @@
-import React from 'react'
+import React from "react";
 
 const Footer = () => {
   return (
-    <>
-    <footer>
+    <footer className="mt-16">
 
+      <div className="bg-slate-900 text-white">
 
-    <div className='bg-slate-900 text-white text-center flex justify-center items-center flex-col h-40'>
-      <div className='h-1 bg-white w-[80vw] mx-auto'></div>
-      <p>Copyright © 2024 SA Creation Privacy Policy All rights reserved.</p>
-    </div>
+        <div className="max-w-7xl mx-auto px-6 py-10">
+
+          {/* Divider */}
+          <div className="h-px bg-slate-700 mb-8"></div>
+
+          {/* Footer Content */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-6">
+
+            {/* Brand */}
+            <div className="text-center md:text-left">
+
+              <h2 className="text-2xl font-bold">
+                SR Creation
+              </h2>
+
+              <p className="text-gray-400 text-sm mt-2">
+                Premium Fashion • Quality • Style
+              </p>
+
+            </div>
+
+            {/* Links */}
+            <div className="flex flex-wrap justify-center gap-6 text-sm">
+
+              <a
+                href="/"
+                className="hover:text-blue-400 transition"
+              >
+                Home
+              </a>
+
+              <a
+                href="/collections"
+                className="hover:text-blue-400 transition"
+              >
+                Collections
+              </a>
+
+              <a
+                href="/contact"
+                className="hover:text-blue-400 transition"
+              >
+                Contact
+              </a>
+
+              <a
+                href="/privacy"
+                className="hover:text-blue-400 transition"
+              >
+                Privacy Policy
+              </a>
+
+            </div>
+
+          </div>
+
+          {/* Bottom */}
+          <div className="border-t border-slate-700 mt-8 pt-6 text-center text-gray-400 text-sm">
+
+            © {new Date().getFullYear()}{" "}
+            <span className="font-semibold text-white">
+              SR Creation
+            </span>
+            . All Rights Reserved.
+
+          </div>
+
+        </div>
+
+      </div>
+
     </footer>
-    </>
-  )
-}
+  );
+};
 
-export default Footer
+export default Footer;

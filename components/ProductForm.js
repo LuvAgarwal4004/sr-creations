@@ -41,40 +41,6 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
     console.log(initialData);
   }, [initialData]);
 
-  // useEffect(() => {
-
-  //   const handleClickOutside =
-  //     (e) => {
-
-  //       if (
-  //         popupRef.current &&
-  //         !popupRef.current.contains(
-  //           e.target
-  //         )
-  //       ) {
-
-  //         setForm(prev => ({
-  //           ...prev,
-  //           isDiscount: false
-  //         }));
-
-  //       }
-
-  //     };
-
-  //   document.addEventListener(
-  //     "mousedown",
-  //     handleClickOutside
-  //   );
-
-  //   return () =>
-  //     document.removeEventListener(
-  //       "mousedown",
-  //       handleClickOutside
-  //     );
-
-  // }, []);
-
   const [uploading, setUploading] = useState(false);
   const [originalPrice] =
     useState(initialData.price || 0);
@@ -221,261 +187,386 @@ export default function ProductForm({ initialData = {}, onSubmit }) {
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4 max-w-xl text-black">
+    <form
+      onSubmit={handleSubmit}
+      className="
+      max-w-3xl
+      mx-auto
+      bg-white
+      rounded-3xl
+      shadow-lg
+      border
+      p-6
+      md:p-8
+      space-y-6
+      text-black
+    "
+    >
+      <div>
+        <h2 className="text-3xl font-bold">
+          Product Details
+        </h2>
 
-      <input name="title" required value={form.title} onChange={handleChange} placeholder="Title" className="w-full p-2" />
+        <p className="text-gray-500 mt-1">
+          Add or update your product information.
+        </p>
+      </div>
 
-      <input name="price" type="number" required value={form.price} onChange={handleChange} placeholder="Price" className="w-full p-2" />
+      {/* Title */}
 
-      <label className="flex items-center gap-2">
+      <div>
+        <label className="block mb-2 font-medium">
+          Product Title
+        </label>
+
         <input
-          type="checkbox"
-          checked={form.isDiscount}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              isDiscount: e.target.checked
-            })
-          }
+          name="title"
+          required
+          value={form.title}
+          onChange={handleChange}
+          placeholder="Enter product title"
+          className="
+          w-full
+          rounded-xl
+          border
+          border-gray-300
+          px-4
+          py-3
+          focus:ring-2
+          focus:ring-blue-500
+          outline-none
+        "
         />
+      </div>
 
-        Apply Discount
-      </label>
-      {/* <label className="flex items-center gap-2">
-        <input
-          type="checkbox"
-          checked={form.isDiscount}
-          onChange={(e) =>
-            setForm({
-              ...form,
-              isDiscount: e.target.checked
-            })
-          }
-        />
+      {/* Price */}
 
-        Put As Discount
-      </label> */}
-      {
-        form.isDiscount && (
-          <div className="space-y-3">
+      <div className="grid md:grid-cols-2 gap-5">
+
+        <div>
+          <label className="block mb-2 font-medium">
+            Price
+          </label>
+
+          <input
+            name="price"
+            type="number"
+            required
+            value={form.price}
+            onChange={handleChange}
+            placeholder="₹0"
+            className="
+            w-full
+            rounded-xl
+            border
+            border-gray-300
+            px-4
+            py-3
+            focus:ring-2
+            focus:ring-blue-500
+            outline-none
+          "
+          />
+        </div>
+
+        <div className="flex items-end">
+
+          <label className="flex items-center gap-3 font-medium">
+
+            <input
+              type="checkbox"
+              checked={form.isDiscount}
+              onChange={(e) =>
+                setForm({
+                  ...form,
+                  isDiscount: e.target.checked,
+                })
+              }
+              className="w-5 h-5"
+            />
+
+            Apply Discount
+
+          </label>
+
+        </div>
+
+      </div>
+
+      {/* Discount */}
+
+      {form.isDiscount && (
+        <div className="grid md:grid-cols-2 gap-5">
+
+          <div>
+            <label className="block mb-2 font-medium">
+              Discounted Price
+            </label>
 
             <input
               type="number"
-              placeholder="Discounted Price"
+              placeholder="₹0"
               value={discountedPrice}
               onChange={(e) => {
-
-                const value =
-                  Number(e.target.value);
+                const value = Number(e.target.value);
 
                 setDiscountedPrice(value);
 
-                const percent =
-                  Math.round(
-                    ((Number(form.price) - value) /
-                      Number(form.price))
-                    * 100
-                  );
+                const percent = Math.round(
+                  ((Number(form.price) - value) /
+                    Number(form.price)) *
+                  100
+                );
 
                 setDiscountPercent(percent);
               }}
-              className="w-full p-2"
+              className="
+              w-full
+              rounded-xl
+              border
+              border-gray-300
+              px-4
+              py-3
+              focus:ring-2
+              focus:ring-blue-500
+              outline-none
+            "
             />
+          </div>
+
+          <div>
+            <label className="block mb-2 font-medium">
+              Discount %
+            </label>
 
             <input
               type="number"
-              placeholder="Discount %"
+              placeholder="0%"
               value={discountPercent}
               onChange={(e) => {
-
-                const percent =
-                  Number(e.target.value);
+                const percent = Number(e.target.value);
 
                 setDiscountPercent(percent);
 
-                const discounted =
-                  Math.round(
-                    Number(form.price) *
-                    (1 - percent / 100)
-                  );
-
-                setDiscountedPrice(
-                  discounted
+                const discounted = Math.round(
+                  Number(form.price) *
+                  (1 - percent / 100)
                 );
+
+                setDiscountedPrice(discounted);
               }}
-              className="w-full p-2"
+              className="
+              w-full
+              rounded-xl
+              border
+              border-gray-300
+              px-4
+              py-3
+              focus:ring-2
+              focus:ring-blue-500
+              outline-none
+            "
+            />
+          </div>
+
+        </div>
+      )}
+
+      {/* Category */}
+
+      <div className="grid md:grid-cols-2 gap-5">
+
+        <div>
+
+          <label className="block mb-2 font-medium">
+            Category
+          </label>
+
+          <select
+            name="category"
+            value={form.category}
+            onChange={handleChange}
+            className="
+            w-full
+            rounded-xl
+            border
+            border-gray-300
+            px-4
+            py-3
+            focus:ring-2
+            focus:ring-blue-500
+            outline-none
+          "
+          >
+            <option value="trends">
+              Trends
+            </option>
+
+            <option value="collections">
+              Collections
+            </option>
+          </select>
+
+        </div>
+
+        {form.category === "collections" && (
+          <div>
+
+            <label className="block mb-2 font-medium">
+              Collection Name
+            </label>
+
+            <input
+              name="collection"
+              value={form.collection}
+              onChange={handleChange}
+              placeholder="Collection"
+              className="
+              w-full
+              rounded-xl
+              border
+              border-gray-300
+              px-4
+              py-3
+              focus:ring-2
+              focus:ring-blue-500
+              outline-none
+            "
             />
 
           </div>
-        )
-      }
-      {/*
-        //   showDiscountPopup && (
-        //           <div
-        //             className="
-        // fixed
-        // inset-0
-        // bg-black/60
-        // flex
-        // items-center
-        // justify-center
-        // z-50
-        // "
-        //           >
+        )}
 
-        //             <div
-        //               className="
-        // bg-white
-        // rounded-3xl
-        // p-8
-        // max-w-md
-        // w-full
-        // "
-        //             >
+      </div>
 
-        //               <h2
-        //                 className="
-        // text-2xl
-        // font-bold
-        // mb-4
-        // "
-        //               >
-        //                 // ⚡ Price Reduction Detected
-        //               </h2>
+      {/* Description */}
 
-        //               <p className="mb-2">
-        //                 Old Price:
-        //                 ₹{originalPrice}
-        //               </p>
+      <div>
 
-        //               <p className="mb-6">
-        //                 New Price:
-        //                 ₹{form.price}
-        //               </p>
+        <label className="block mb-2 font-medium">
+          Description
+        </label>
 
-        //               <div
-        //                 className="
-        // flex
-        // gap-4
-        // "
-        //               >
-        //                 <button
-        //                   type="button"
-        //                   onClick={() => {
-        //                     onSubmit({
-        //                       ...form,
-        //                       isDiscount: true
-        //                     });
+        <textarea
+          rows={4}
+          name="description"
+          value={form.description}
+          onChange={handleChange}
+          placeholder="Product description..."
+          className="
+          w-full
+          rounded-xl
+          border
+          border-gray-300
+          px-4
+          py-3
+          focus:ring-2
+          focus:ring-blue-500
+          outline-none
+        "
+        />
 
-        //                     // setShowDiscountPopup(false);
-        //                   }}
-        //                   className="
-        // flex-1
-        // bg-red-500
-        // text-white
-        // py-3
-        // rounded-xl
-        // "
-        //                 >
-        //                   // Create Discount
-        //                 </button>
+      </div>
 
-        //                 <button
-        //                   type="button"
-        //                   onClick={() => {
-        //                     onSubmit({
-        //                       ...form,
-        //                       isDiscount: false
-        //                     });
+      {/* Specifications */}
 
-        //                     // setShowDiscountPopup(false);
-        //                   }}
-        //                   className="
-        // flex-1
-        // bg-gray-200
-        // py-3
-        // rounded-xl
-        // "
-        //                 >
-        //                   // Just Update Price
-        //                 </button>
-        {/* <button
-                  type="button"
-                  onClick={() =>
-                    submitProduct(true)
-                  }
-                  className="
-flex-1
-bg-red-500
-text-white
-py-3
-rounded-xl
-"
-                >
-                  Create Discount
-                </button>
+      <div>
 
-                <button
-                  type="button"
-                  onClick={() =>
-                    submitProduct(false)
-                  }
-                  className="
-flex-1
-bg-gray-200
-py-3
-rounded-xl
-"
-                >
-                  Just Update Price
-                </button> */}
+        <label className="block mb-2 font-medium">
+          Specifications
+        </label>
 
-      {/* //     </div> */}
+        <textarea
+          rows={5}
+          name="specifications"
+          value={form.specifications}
+          onChange={handleChange}
+          placeholder="Specifications..."
+          className="
+          w-full
+          rounded-xl
+          border
+          border-gray-300
+          px-4
+          py-3
+          focus:ring-2
+          focus:ring-blue-500
+          outline-none
+        "
+        />
 
-      {/* //   </div> */}
+      </div>
 
-      {/* // </div> */}
-      {/* // ) */}
-      {/* // } */}
-      {/* CATEGORY DROPDOWN */}
-      <select name="category" value={form.category} onChange={handleChange} className="w-full p-2">
-        <option value="trends">Trends</option>
-        <option value="collections">Collections</option>
-      </select>
+      {/* Image */}
 
-      {/* CONDITIONAL INPUT */}
-      {
-        form.category === "collections" && (
-          <input
-            name="collection"
-            value={form.collection}
-            onChange={handleChange}
-            placeholder="Enter collection name"
-            className="w-full p-2"
-          />
-        )
-      }
+      <div>
 
-      <textarea name="description" value={form.description} onChange={handleChange} placeholder="Description"
-        className="w-full p-2" />
-      <textarea
-        name="specifications"
-        value={form.specifications}
-        onChange={handleChange}
-        placeholder="Specifications"
-        className="w-full p-2"
-      />
+        <label className="block mb-2 font-medium">
+          Product Image
+        </label>
 
+        <input
+          type="file"
+          onChange={(e) =>
+            handleImageUpload(e.target.files[0])
+          }
+          className="w-full"
+        />
 
-      <input type="file" onChange={(e) => handleImageUpload(e.target.files[0])} />
+        {uploading && (
+          <p className="text-blue-600 mt-3">
+            Uploading image...
+          </p>
+        )}
 
-      {uploading && <p>Uploading...</p>}
+        {form.image && (
+          <div className="mt-5">
 
-      {form.image && <img src={form.image} className="w-32 h-32" />}
+            <img
+              src={form.image}
+              alt="Preview"
+              className="
+              w-40
+              h-40
+              rounded-2xl
+              object-cover
+              border
+              shadow-md
+            "
+            />
 
-      <button className="bg-blue-600 text-white px-4 py-2">
+          </div>
+        )}
+
+      </div>
+
+      <button
+        className="
+        w-full
+        md:w-auto
+
+        bg-gradient-to-r
+        from-blue-600
+        to-indigo-700
+
+        text-white
+
+        px-10
+        py-3
+
+        rounded-xl
+
+        font-semibold
+
+        shadow-lg
+
+        hover:scale-105
+
+        transition-all
+      "
+      >
         Save Product
       </button>
-    </form >
+    </form>
   );
 }

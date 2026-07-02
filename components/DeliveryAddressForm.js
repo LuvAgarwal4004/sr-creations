@@ -141,50 +141,144 @@ const DeliveryAddressForm = () => {
 
   return (
     <div>
-      <Grid container spacing={4}>
-        <Grid xs={12} lg={5} className='border rounded-e-md shadow-md h-[30.5rem] overflow-y-scroll'>
-          <div className='p-5 py-7 border-b cursor-pointer'>
-            <AdressCard address={address} />
-            {/* <Button sx={{mt:2, bgcolor:"RGB(145 85 253)"}} size='large' variant='contained'>Deliver Here</Button> */}
-          </div>
+      <Grid container spacing={3}>
+        <Grid
+          item
+          xs={12}
+          lg={4}
+        >
+          <div
+            className="
+      bg-white
+      rounded-3xl
+      border
+      shadow-lg
+      overflow-hidden
+      h-fit
+      lg:sticky
+      lg:top-6
+    "
+          >
 
+            <div className="p-6">
+
+              <h2 className="text-xl font-bold mb-5">
+                Saved Address
+              </h2>
+
+              <AdressCard address={address} />
+
+            </div>
+
+          </div>
         </Grid>
-        <Grid item xs={12} lg={7}>
-          <Box className='border rounded-s-md shadow-md p-5'>
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
+        <Grid item xs={12} lg={8}>
+          <Box
+            className="
+    bg-white
+    rounded-3xl
+    border
+    shadow-lg
+    p-6
+    sm:p-8
+  "
+          >
+            <h2 className="text-2xl font-bold mb-8">
+              Delivery Address
+            </h2>
+            <form onSubmit={handleSubmit} className="space-y-7">
+              <div className="grid
+grid-cols-1
+md:grid-cols-2
+gap-5">
                 <div>
-                  <label for="firstName" className="mb-2 block text-sm font-medium text-gray-700">First Name</label>
+                  <label htmlFor="firstName" className="mb-2 block text-sm font-semibold font-medium text-gray-700">First Name</label>
                   <input type="text" id="firstName" name="firstName" defaultValue={address?.firstName || ""}
                     className="w-full border  border-gray-300 bg-white px-4 py-3 text-gray-900 
                focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none"
                     placeholder="John" required />
                 </div>
                 <div>
-                  <label for="lastName" className="mb-2 block text-sm font-medium text-gray-700">Last Name</label>
-                  <input defaultValue={address?.lastName || ""} type="text" id="lastName" name="lastName" className="w-full border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none" placeholder="Doe" required />
+                  <label htmlFor="lastName" className="mb-2 block text-sm font-semibold font-medium text-gray-700">Last Name</label>
+                  <input defaultValue={address?.lastName || ""} type="text" id="lastName" name="lastName" className="
+w-full
+rounded-xl
+border
+border-gray-300
+bg-white
+px-4
+py-3
+text-gray-900
+transition
+
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500
+focus:border-blue-500
+" placeholder="Doe" required />
                 </div>
               </div>
 
               <div>
-                <label for="address" className="mb-2 block text-sm font-medium text-gray-700">Address</label>
-                <input defaultValue={address?.streetAddress || ""} type="address" id="address" name="address" className="w-full border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none" placeholder="Address" required />
+                <label htmlFor="address" className="mb-2 block text-sm font-semibold font-medium text-gray-700">Address</label>
+                <input defaultValue={address?.streetAddress || ""} type="address" id="address" name="address" className="
+w-full
+rounded-xl
+border
+border-gray-300
+bg-white
+px-4
+py-3
+text-gray-900
+transition
+
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500
+focus:border-blue-500
+" placeholder="Address" required />
               </div>
 
               <div>
-                <label for="city" className="mb-2 block text-sm font-medium text-gray-700">City</label>
-                <input defaultValue={address?.city || ""} type="text" id="city" name="city" className="w-full border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none" placeholder=" City" required />
+                <label htmlFor="city" className="mb-2 block text-sm font-semibold font-medium text-gray-700">City</label>
+                <input defaultValue={address?.city || ""} type="text" id="city" name="city" className="
+w-full
+rounded-xl
+border
+border-gray-300
+bg-white
+px-4
+py-3
+text-gray-900
+transition
+
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500
+focus:border-blue-500
+" placeholder=" City" required />
                 {/* <p className="mt-2 text-xs text-gray-500">Must be at least 8 characters with numbers and symbols</p> */}
               </div>
               <div>
-                <label for="state" className="mb-2 block text-sm font-medium text-gray-700">State</label>
+                <label htmlFor="state" className="mb-2 block text-sm font-semibold font-medium text-gray-700">State</label>
                 {/* <select
                   id="state"
                   name="state"
                   value={selectedState}
                   onChange={(e) =>
                     setSelectedState(e.target.value)}
-                  className="w-full border border-gray-300 bg-white px-4 py-3"
+                  className="w-full
+rounded-xl
+border
+border-gray-300
+bg-white
+px-4
+py-3
+transition
+focus:border-blue-500
+focus:ring-2
+focus:ring-blue-200
+outline-none"
                   required
                 >
                   <option value="">
@@ -237,18 +331,69 @@ const DeliveryAddressForm = () => {
                     />
                   )}
                 />
-                {/* <input defaultValue={address?.state || ""} type="text" id="state" name="state" className="w-full border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none" placeholder=" City" required /> */}
+                {/* <input defaultValue={address?.state || ""} type="text" id="state" name="state" className="w-full
+rounded-xl
+border
+border-gray-300
+bg-white
+px-4
+py-3
+transition
+focus:border-blue-500
+focus:ring-2
+focus:ring-blue-200
+outline-none text-gray-900 focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none" placeholder=" City" required /> */}
                 {/* <p className="mt-2 text-xs text-gray-500">Must be at least 8 characters with numbers and symbols</p> */}
               </div>
 
 
               <div>
-                <label for="phoneNumber" className="mb-2 block text-sm font-medium text-gray-700">Phone Number</label>
-                <input defaultValue={address?.mobile || ""} type="tel" id="phoneNumber" name="phoneNumber" className="w-full border border-gray-300 bg-white px-4 py-3 text-gray-900 focus:border-transparent focus:ring-2 focus:ring-black focus:outline-none" placeholder="" required />
+                <label htmlFor="phoneNumber" className="mb-2 block text-sm font-semibold font-medium text-gray-700">Phone Number</label>
+                <input defaultValue={address?.mobile || ""} type="tel" id="phoneNumber" name="phoneNumber" className="
+w-full
+rounded-xl
+border
+border-gray-300
+bg-white
+px-4
+py-3
+text-gray-900
+transition
+
+focus:outline-none
+focus:ring-2
+focus:ring-blue-500
+focus:border-blue-500
+" placeholder="" required />
               </div>
 
-              <Button sx={{ mt: 2, bgcolor: "RGB(145 85 253)" }} size='large' variant='contained'
-                type='submit'>Deliver Here</Button>
+              <button
+                type="submit"
+                className="
+w-full
+sm:w-auto
+
+bg-gradient-to-r
+from-blue-600
+to-indigo-700
+
+text-white
+
+px-10
+py-3
+
+rounded-xl
+
+font-semibold
+
+shadow-lg
+
+hover:scale-105
+transition-all
+"
+              >
+                Deliver Here
+              </button>
             </form>
           </Box>
         </Grid>

@@ -86,39 +86,175 @@ export default function PaymentStep() {
     setLoading(false);
   };
   return (
-    <div className="max-w-xl mx-auto border p-6 rounded-xl shadow-md">
+    <div
+      className="
+      max-w-2xl
+      mx-auto
+      bg-white
+      rounded-3xl
+      border
+      shadow-lg
+      p-6
+      sm:p-8
+    "
+    >
+      <div className="mb-8">
+        <h2 className="text-3xl font-bold text-gray-900">
+          Payment Method
+        </h2>
 
-      <h2 className="text-2xl font-bold mb-6">Select Payment Method</h2>
+        <p className="text-gray-500 mt-2">
+          Choose your preferred payment option.
+        </p>
+      </div>
 
-      {/* COD OPTION */}
+      {/* CASH ON DELIVERY */}
+
       <div
         onClick={() => setMethod("cod")}
-        className={`border p-4 rounded-lg mb-4 cursor-pointer ${method === "cod" ? "border-black bg-gray-100" : ""
-          }`}
+        className={`
+        cursor-pointer
+        rounded-2xl
+        border-2
+        p-5
+        transition-all
+        duration-300
+
+        ${method === "cod"
+            ? "border-black bg-gray-100 shadow-md"
+            : "border-gray-200 hover:border-gray-400 hover:shadow-md"
+          }
+      `}
       >
-        <p className="font-semibold">Cash on Delivery</p>
-        <p className="text-sm text-gray-500">
-          Pay when your order arrives
-        </p>
+        <div className="flex items-start gap-4">
+
+          <div
+            className={`
+            mt-1
+            h-5
+            w-5
+            rounded-full
+            border-2
+            flex
+            items-center
+            justify-center
+            ${method === "cod"
+                ? "border-black"
+                : "border-gray-400"
+              }
+          `}
+          >
+            {method === "cod" && (
+              <div className="w-2.5 h-2.5 rounded-full bg-black" />
+            )}
+          </div>
+
+          <div className="flex-1">
+
+            <h3 className="font-semibold text-lg">
+              Cash on Delivery
+            </h3>
+
+            <p className="text-gray-500 text-sm mt-1">
+              Pay in cash when your order is delivered.
+            </p>
+
+          </div>
+
+        </div>
       </div>
 
       {/* ONLINE PAYMENT */}
+
       <div
         onClick={() => setMethod("online")}
-        className={`border p-4 rounded-lg cursor-pointer ${method === "online" ? "border-black bg-gray-100" : ""
-          }`}
+        className={`
+        cursor-pointer
+        rounded-2xl
+        border-2
+        p-5
+        mt-5
+        transition-all
+        duration-300
+
+        ${method === "online"
+            ? "border-black bg-gray-100 shadow-md"
+            : "border-gray-200 hover:border-gray-400 hover:shadow-md"
+          }
+      `}
       >
-        <p className="font-semibold">Pay Online (Card / UPI)</p>
-        <p className="text-sm text-gray-500">
-          Secure payment via Razorpay
-        </p>
+        <div className="flex items-start gap-4">
+
+          <div
+            className={`
+            mt-1
+            h-5
+            w-5
+            rounded-full
+            border-2
+            flex
+            items-center
+            justify-center
+            ${method === "online"
+                ? "border-black"
+                : "border-gray-400"
+              }
+          `}
+          >
+            {method === "online" && (
+              <div className="w-2.5 h-2.5 rounded-full bg-black" />
+            )}
+          </div>
+
+          <div className="flex-1">
+
+            <h3 className="font-semibold text-lg">
+              Online Payment
+            </h3>
+
+            <p className="text-gray-500 text-sm mt-1">
+              Pay securely using UPI, Debit Card, Credit Card or Net Banking.
+            </p>
+
+            <span className="inline-block mt-3 text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full">
+              Secure Payment
+            </span>
+
+          </div>
+
+        </div>
       </div>
 
-      {/* BUTTON */}
+      {/* PLACE ORDER */}
+
       <button
         onClick={handlePayment}
         disabled={loading}
-        className="w-full mt-6 bg-black text-white py-3 rounded-lg hover:bg-gray-800 transition"
+        className="
+        w-full
+        mt-8
+
+        rounded-xl
+
+        bg-black
+        text-white
+
+        py-4
+
+        text-lg
+        font-semibold
+
+        transition-all
+        duration-300
+
+        hover:bg-gray-900
+        hover:shadow-xl
+
+        active:scale-[0.98]
+
+        disabled:opacity-60
+        disabled:cursor-not-allowed
+      "
       >
         {loading ? "Processing..." : "Place Order"}
       </button>

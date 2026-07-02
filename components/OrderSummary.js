@@ -156,38 +156,95 @@ const OrderSummary = () => {
 
   return (
     <div>
-      <div className='p-5 shadow-lg rounded-s-md border'>
+      <div
+        className="
+bg-white
+rounded-3xl
+border
+shadow-md
+p-6
+mb-8
+"
+      >
+        <h2 className="text-xl font-bold mb-5">
+          Delivery Address
+        </h2>
         <AdressCard address={address} />
 
       </div>
 
-      <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-16">
+      <section className="bg-white py-8 antialiased dark:bg-gray-900 md:py-14">
         <div className="mx-auto max-w-screen-xl px-4 2xl:px-0">
-          <h2 className="text-xl font-semibold text-gray-900 dark:text-white sm:text-2xl">Shopping Cart</h2>
+          <h2 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white
+           sm:text-2xl">Shopping Cart</h2>
 
-          <div className="mt-6 sm:mt-8 md:gap-6 lg:flex lg:items-start xl:gap-8">
+          <div
+            className="
+mt-6
+sm:mt-8
+flex
+flex-col
+lg:flex-row
+gap-8
+items-start
+"
+          >
             <div className="mx-auto w-full flex-none lg:max-w-2xl xl:max-w-4xl">
               <div className="space-y-6">
 
                 {/* Trend Items */}
                 {trendItems.map(item => (
                   <div key={item._id} className="border p-4 rounded-lg">
-                    <div className="flex justify-between items-center">
+                    <div className="
+flex
+flex-col
+sm:flex-row
+gap-5
+items-center
+justify-between
+">
 
-                      <img src={item.image} className="h-20 w-20" />
+                      <img
+                        src={item.image}
+                        className="
+w-24
+h-24
+sm:w-28
+sm:h-28
+object-cover
+rounded-xl
+border
+flex-shrink-0
+"
+                      />
 
-                      <div>
-                        <p className="font-semibold">{item.title}</p>
-                        <p className="text-sm text-gray-500">{item.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold line-clamp-2">
+                          {item.title}
+                        </p>
+
+                        <p className="text-sm text-gray-500 line-clamp-2">
+                          {item.description}
+                        </p>
                       </div>
 
-                      {/* <div className="text-right">
+                      {/* <div
+className="
+text-center
+sm:text-right
+min-w-[110px]
+"
+>
                         <p>Qty: {item.qty}</p>
                         <p className="font-bold">
                           ₹{item.price * item.qty}
                         </p>
                       </div> */}
-                      <div className="text-right">
+                      <div className="
+text-center
+sm:text-right
+min-w-[100px]
+">
 
                         <p>Qty: {item.qty}</p>
 
@@ -217,22 +274,58 @@ const OrderSummary = () => {
                 {/* Collection Items */}
                 {collectionItems.map(item => (
                   <div key={item.cartId} className="border p-4 rounded-lg">
-                    <div className="flex justify-between items-center">
+                    <div className="
+flex
+flex-col
+sm:flex-row
+gap-5
+items-center
+justify-between
+">
 
-                      <img src={item.image} className="h-20 w-20" />
+                      <img
+                        src={item.image}
+                        className="
+w-24
+h-24
+sm:w-28
+sm:h-28
+object-cover
+rounded-xl
+border
+flex-shrink-0
+"
+                      />
 
-                      <div>
-                        <p className="font-semibold">{item.title}</p>
-                        <p className="text-sm text-gray-500">{item.description}</p>
+                      <div className="flex-1 min-w-0">
+                        <p className="font-semibold line-clamp-2">
+                          {item.title}
+                        </p>
+
+                        <p className="text-sm text-gray-500 line-clamp-2">
+                          {item.description}
+                        </p>
                       </div>
 
-                      {/* <div className="text-right">
+                      {/* <div
+className="
+text-center
+sm:text-right
+min-w-[110px]
+"
+>
                         <p>Qty: {item.qty}</p>
                         <p className="font-bold">
                           ₹{item.price * item.qty}
                         </p>
                       </div> */}
-                      <div className="text-right">
+                      <div
+                        className="
+text-center
+sm:text-right
+min-w-[110px]
+"
+                      >
 
                         <p>Qty: {item.qty}</p>
 
@@ -269,7 +362,8 @@ const OrderSummary = () => {
             </div>
 
             {/* RIGHT SIDE (UNCHANGED UI) */}
-            <div className="mt-6 lg:mt-0 w-full max-w-md space-y-4">
+            <div className="mt-6 lg:mt-0 w-full lg:sticky
+lg:top-8 lg:max-w-md space-y-4">
 
               <div className="rounded-lg border p-6 shadow-sm dark:bg-gray-800 space-y-4">
 
@@ -365,7 +459,10 @@ const OrderSummary = () => {
                       }, 800);
                     }, 200);
                   }}
-                  className="w-full mt-4 bg-black text-white py-3 rounded-lg hover:bg-gray-800 
+                  className="w-full mt-4 bg-black text-white py-4
+rounded-xl
+font-semibold
+text-lg hover:bg-gray-800 
                 transition"
                 >
                   Proceed to Payment
