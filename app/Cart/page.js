@@ -387,11 +387,11 @@ const Page = () => {
                         ₹{itemPrice * item.qty}
                       </p>
 
-                      <div className="flex items-center rounded-lg overflow-hidden border">
+                      <div className="flex items-center rounded-lg overflow-hidden">
 
                         <button
                           onClick={() => decreaseQty(item.cartId)}
-                          className="px-3 py-1 bg-gray-200"
+                          className="px-3 py-1 bg-gray-400"
                         >
                           −
                         </button>
@@ -402,7 +402,7 @@ const Page = () => {
 
                         <button
                           onClick={() => increaseQty(item.cartId)}
-                          className="px-3 py-1 bg-gray-200"
+                          className="px-3 py-1 bg-gray-400"
                         >
                           +
                         </button>
