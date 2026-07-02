@@ -4,6 +4,7 @@ import { useState } from "react";
 import FilterSidebar from "./FilterSidebar";
 import SmartLink from "./SmartLink";
 import Image from "next/image";
+import MobileFilterDrawer from "@/components/MobileFilterDrawer";
 
 export default function CollectionClient({
   products,
@@ -35,7 +36,12 @@ export default function CollectionClient({
 
           {/* Products */}
           <section className="flex-1">
-
+            <div className="lg:hidden">
+              <MobileFilterDrawer
+                maxPrice={maxPrice}
+                setMaxPrice={setMaxPrice}
+              />
+            </div>
             <div className="mb-8 flex flex-col sm:flex-row sm:items-end sm:justify-between gap-3">
 
               <div>
